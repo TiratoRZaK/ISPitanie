@@ -1,0 +1,124 @@
+﻿<Window x:Class="ISPitanie.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ISPitanie"
+        mc:Ignorable="d"
+        Title="ИС Питание 1.0" Height="450" Width="800" Loaded="Window_Loaded" Activated="Window_Activated">
+    <Window.Resources>
+        <CollectionViewSource x:Key="dishViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Dish}, CreateList=True}"/>
+        <CollectionViewSource x:Key="dishProductsDishesViewSource" Source="{Binding ProductsDishes, Source={StaticResource dishViewSource}}"/>
+    </Window.Resources>
+
+    <DockPanel LastChildFill="True">
+        <!--<Button DockPanel.Dock="Bottom" Background="BlanchedAlmond" Content="Нижняя панель" />-->
+        <Button DockPanel.Dock="Bottom" Content="Refresh" Click="Button_Click_1" Height="25" Width="75"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="235*"></RowDefinition>
+                <RowDefinition Height="164*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Grid.Row="1" Content="Календарь" Margin="10"/>
+            <Button Grid.Column="1" Grid.Row="1" Content="Панель информации" Margin="10" />
+            <TabControl MinHeight="100" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="10" SelectionChanged="TabControl_SelectionChanged" Height="auto" Width="auto" IsSynchronizedWithCurrentItem="True" SelectedIndex="0">
+                <TabItem Header="Продукты">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Button Content="Добавить новый продукт" Padding="3" Margin="5,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="auto" Height="25" Grid.Row="0" Grid.ColumnSpan="2" Click="Button_Click"/>
+                        <DataGrid x:Name="productDataGrid" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="5,40,5,5" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="2" Grid.RowSpan="2" IsSynchronizedWithCurrentItem="False" AutoGenerateColumns="False" IsReadOnly="True" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Наименование" Width="0.25*"/>
+                                <DataGridTextColumn x:Name="unitColumn" Binding="{Binding Unit.Name}" Header="Ед. изм." Width="0.1*"/>
+                                <DataGridTextColumn x:Name="normColumn" Binding="{Binding Norm}" Header="Норма на человека" Width="0.225*"/>
+                                <DataGridTextColumn x:Name="priceColumn" Binding="{Binding Price}" Header="Цена" Width="0.1*"/>
+                                <DataGridTextColumn x:Name="proteinColumn" Binding="{Binding Protein}" Header="Белки" Width="0.1*"/>
+                                <DataGridTextColumn x:Name="fatColumn" Binding="{Binding Fat}" Header="Жиры" Width="0.1*"/>
+                                <DataGridTextColumn x:Name="carbohydrateColumn" Binding="{Binding Carbohydrate}" Header="Углеводы" Width="0.1*"/>
+                                <DataGridTextColumn x:Name="vitamine_CColumn" Binding="{Binding Vitamine_C}" Header="Витамин C" Width="0.1*"/>
+                                <DataGridTemplateColumn Header="Функции" Width="170">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button Width="80" HorizontalAlignment="Left" Click="EditProduct" CommandParameter="{Binding Id}" >Изменить</Button>
+                                                <Button Width="80" HorizontalAlignment="Right" Margin="10,0,0,0" Click="DeleteProduct" CommandParameter="{Binding Id}" >Удалить</Button>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Блюда">
+                    <Grid DataContext="{StaticResource dishProductsDishesViewSource}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Button Content="Добавить новое блюдо" Padding="3" Margin="5,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="auto" Height="25" Grid.Row="0" Grid.ColumnSpan="2" Click="Button_Click"/>
+                        <DataGrid x:Name="dishesDataGrid" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="5,40,5,5" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="2" Grid.RowSpan="2" IsSynchronizedWithCurrentItem="False" AutoGenerateColumns="False" IsReadOnly="True" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn x:Name="nameDishes" Binding="{Binding Name}" Header="Наименование" Width="0.25*"/>
+                                <DataGridTextColumn x:Name="normDishes" Binding="{Binding Norm}" Header="Норма на человека" Width="0.225*"/>
+                                <DataGridTextColumn x:Name="priceDishes" Binding="{Binding Price}" Header="Цена" Width="0.1*"/>
+                                <DataGridTemplateColumn x:Name="listProductDishes" Header="Список продуктов" Width="0.25*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button HorizontalAlignment="Left" Click="ShowHideDetails" CommandParameter="{Binding Id}" >Изменить</Button>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Функции" Width="170">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Button Width="80" HorizontalAlignment="Left" Click="EditDishes" CommandParameter="{Binding Id}" >Изменить</Button>
+                                                <Button Width="80" HorizontalAlignment="Right" Margin="10,0,0,0" Click="DeleteDishes" CommandParameter="{Binding Id}" >Удалить</Button>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Меню">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+                <TabItem Header="Отчёты">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+                <TabItem Header="Договора">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+                <TabItem Header="Счёт-фактуры">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+                <TabItem Header="Поддержка">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+                <TabItem Header="Шаблоны">
+                    <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </DockPanel>
+</Window>
