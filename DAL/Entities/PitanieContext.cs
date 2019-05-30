@@ -23,7 +23,7 @@ namespace DAL.Repository
 
         public virtual DbSet<Dish> Dishes { get; set; }
         public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<ProductsDish> ProductsDishes { get; set; }
+        public virtual DbSet<ProductDish> ProductsDishes { get; set; }
         public virtual DbSet<Unit> Units { get; set; }
     }
 }

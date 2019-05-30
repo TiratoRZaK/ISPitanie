@@ -11,7 +11,7 @@ namespace DAL.Interfaces
     {
         IRepository<Product> Products { get; }
         IRepository<Dish> Dishes { get; }
-        IRepository<ProductsDish> ProductDishes { get; }
+        IRepository<ProductDish> ProductDishes { get; }
         IRepository<Unit> Units { get; }
         void Save();
     }

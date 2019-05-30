@@ -73,7 +73,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="MapperConfiguration.cs" />
-    <Compile Include="ViewModels\ProductViewModel.cs" />
+    <Compile Include="ViewModels\ProductsViewModel.cs" />
     <Compile Include="Views\AddDishesForm.xaml.cs">
       <DependentUpon>AddDishesForm.xaml</DependentUpon>
     </Compile>

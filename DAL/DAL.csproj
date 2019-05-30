@@ -50,7 +50,7 @@
   <ItemGroup>
     <Compile Include="Entities\Dish.cs" />
     <Compile Include="Entities\Product.cs" />
-    <Compile Include="Entities\ProductsDish.cs" />
+    <Compile Include="Entities\ProductDish.cs" />
     <Compile Include="Entities\Unit.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />

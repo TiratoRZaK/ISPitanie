@@ -46,7 +46,7 @@ namespace DAL.Repositories
             }
         }
 
-        public IRepository<ProductsDish> ProductDishes
+        public IRepository<ProductDish> ProductDishes
         {
             get
             {

@@ -23,15 +23,16 @@ namespace ISPitanie.Views
     /// </summary>
     public partial class EditProductForm : Window
     {
-        Product product;
+        ProductViewModel product;
         PitanieContext db = new PitanieContext();
         public EditProductForm(Product prod)
         {
-            product = prod;
+            ProductViewModel productView = new ProductViewModel(prod.Id);
+            product = productView;
             this.DataContext = product;
             InitializeComponent();
             unitIdComboBox.ItemsSource = db.Units.ToList();
-            unitIdComboBox.Text = product.Unit.Name;
+            unitIdComboBox.Text = product.UnitName;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -58,14 +59,7 @@ namespace ISPitanie.Views
 
             db.SaveChanges();
             this.Close();
-
-            //new Product()
-            //{
-            //    Id = 3,
-            //    Name = "Арбуз",
-            //    Fat = 10
-            //}
-            var model = Mapper.Map<Product, ProductViewModel> (prod);
+            //var model = Mapper.Map<Product, ProductViewModel> (prod);
         }
 
         private void Button_Click_Cancel(object sender, RoutedEventArgs e)

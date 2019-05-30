@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class ProductDishesRepository : IRepository<ProductsDish>
+    public class ProductDishesRepository : IRepository<ProductDish>
     {
         private PitanieContext db;
 
@@ -19,36 +19,36 @@ namespace DAL.Repositories
             db = context;
         }
 
-        public void Create(ProductsDish item)
+        public void Create(ProductDish item)
         {
             db.ProductsDishes.Add(item);
         }
 
         public void Delete(int id)
         {
-            ProductsDish productsDish = db.ProductsDishes.Find(id);
+            ProductDish productsDish = db.ProductsDishes.Find(id);
             if (productsDish != null)
             {
                 db.ProductsDishes.Remove(productsDish);
             }
         }
 
-        public IEnumerable<ProductsDish> Find(Func<ProductsDish, bool> predicate)
+        public IEnumerable<ProductDish> Find(Func<ProductDish, bool> predicate)
         {
             return db.ProductsDishes.Where(predicate).ToList();
         }
 
-        public ProductsDish Get(int id)
+        public ProductDish Get(int id)
         {
             return db.ProductsDishes.Find(id);
         }
 
-        public IEnumerable<ProductsDish> GetAll()
+        public IEnumerable<ProductDish> GetAll()
         {
             return db.ProductsDishes;
         }
 
-        public void Update(ProductsDish item)
+        public void Update(ProductDish item)
         {
             db.Entry(item).State = EntityState.Modified;
         }

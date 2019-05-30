@@ -65,7 +65,7 @@ namespace ISPitanie
 
             if (prod != null && res == MessageBoxResult.Yes)
             {
-                IEnumerable<ProductsDish> prodDishes = db.ProductDishes.GetAll().Where(x => x.ProductId == prod.Id);
+                IEnumerable<ProductDish> prodDishes = db.ProductDishes.GetAll().Where(x => x.ProductId == prod.Id);
                 Delete_prodDish(prodDishes);
                 db.Products.Delete(prod.Id);
                 db.Save();
@@ -73,7 +73,7 @@ namespace ISPitanie
             productDataGrid.Items.Refresh();
         }
 
-        private void Delete_prodDish(IEnumerable<ProductsDish> productsDishes)
+        private void Delete_prodDish(IEnumerable<ProductDish> productsDishes)
         {
             foreach(var item in productsDishes)
             {

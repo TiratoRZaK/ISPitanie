@@ -10,7 +10,7 @@ namespace DAL.Entities
     {
         public Product()
         {
-            this.ProductsDishes = new HashSet<ProductsDish>();
+            this.ProductsDishes = new HashSet<ProductDish>();
         }
 
         public int Id { get; set; }
@@ -24,6 +24,6 @@ namespace DAL.Entities
         public int? Carbohydrate { get; set; }
 
         public virtual Unit Unit { get; set; }
-        public virtual ICollection<ProductsDish> ProductsDishes { get; set; }
+        public virtual ICollection<ProductDish> ProductsDishes { get; set; }
     }
 }
