@@ -1,6 +1,5 @@
-﻿using DAL.Entities;
-using DAL.Interfaces;
-using DAL.Repository;
+﻿using DAL.Interfaces;
+using DAL.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class ProductRepository : IRepository<Product>
+    public class ProductRepository : IRepository<ProductDTO>
     {
         private PitanieContext db;
 
@@ -19,14 +18,14 @@ namespace DAL.Repositories
             db = context;
         }
 
-        public void Create(Product item)
+        public void Create(ProductDTO item)
         {
             db.Products.Add(item);
         }
 
         public void Delete(int id)
         {
-            Product product = db.Products.Find(id);
+            ProductDTO product = db.Products.Find(id);
             if (product != null)
             {
                 db.Products.Remove(product);
@@ -35,22 +34,22 @@ namespace DAL.Repositories
 
 
 
-        public IEnumerable<Product> Find(Func<Product, bool> predicate)
+        public IEnumerable<ProductDTO> Find(Func<ProductDTO, bool> predicate)
         {
             return db.Products.Where(predicate).ToList();
         }
 
-        public Product Get(int id)
+        public ProductDTO Get(int id)
         {
             return db.Products.Find(id);
         }
 
-        public IEnumerable<Product> GetAll()
+        public IEnumerable<ProductDTO> GetAll()
         {
             return db.Products;
         }
 
-        public void Update(Product item)
+        public void Update(ProductDTO item)
         {
             db.Entry(item).State = EntityState.Modified;
         }

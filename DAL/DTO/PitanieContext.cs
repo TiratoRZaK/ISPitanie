@@ -1,4 +1,4 @@
-﻿using DAL.Entities;
+﻿using DAL.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Repository
+namespace DAL.DTO
 {
     public class PitanieContext : DbContext
     {
@@ -21,9 +21,9 @@ namespace DAL.Repository
         {
         }
 
-        public virtual DbSet<Dish> Dishes { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
-        public virtual DbSet<ProductDish> ProductsDishes { get; set; }
-        public virtual DbSet<Unit> Units { get; set; }
+        public virtual DbSet<DishDTO> Dishes { get; set; }
+        public virtual DbSet<ProductDTO> Products { get; set; }
+        public virtual DbSet<ProductDishDTO> ProductsDishes { get; set; }
+        public virtual DbSet<UnitDTO> Units { get; set; }
     }
 }

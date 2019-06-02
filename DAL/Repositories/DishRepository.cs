@@ -1,6 +1,5 @@
-﻿using DAL.Entities;
-using DAL.Interfaces;
-using DAL.Repository;
+﻿using DAL.Interfaces;
+using DAL.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class DishRepository : IRepository<Dish>
+    public class DishRepository : IRepository<DishDTO>
     {
         private PitanieContext db;
         public DishRepository(PitanieContext context)
@@ -18,36 +17,41 @@ namespace DAL.Repositories
             db = context;
         }
 
-        public void Create(Dish item)
+        public bool IsCount(DishDTO dish)
+        {
+            return dish.Price > 100;
+        }
+
+        public void Create(DishDTO item)
         {
             db.Dishes.Add(item);
         }
 
         public void Delete(int id)
         {
-            Dish dish = db.Dishes.Find(id);
+            DishDTO dish = db.Dishes.Find(id);
             if (dish != null)
             {
                 db.Dishes.Remove(dish);
             }
         }
 
-        public IEnumerable<Dish> Find(Func<Dish, bool> predicate)
+        public IEnumerable<DishDTO> Find(Func<DishDTO, bool> predicate)
         {
             return db.Dishes.Where(predicate).ToList();
         }
 
-        public Dish Get(int id)
+        public DishDTO Get(int id)
         {
             return db.Dishes.Find(id);
         }
 
-        public IEnumerable<Dish> GetAll()
+        public IEnumerable<DishDTO> GetAll()
         {
             return db.Dishes;
         }
 
-        public void Update(Dish item)
+        public void Update(DishDTO item)
         {
             db.Entry(item).State = EntityState.Modified;
         }

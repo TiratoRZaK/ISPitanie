@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using DAL.Entities;
-using DAL.Repository;
+using ISPitanie.DTO;
+using ISPitanie.Interfaces;
 using ISPitanie.Models;
 using System;
 using System.Collections.Generic;
@@ -24,14 +24,15 @@ namespace ISPitanie.Views
     public partial class EditProductForm : Window
     {
         ProductViewModel product;
-        PitanieContext db = new PitanieContext();
-        public EditProductForm(Product prod)
+        IProductService productService;
+        IUnitService unitService;
+        public EditProductForm(ProductDTO prod)
         {
             ProductViewModel productView = new ProductViewModel(prod.Id);
             product = productView;
             this.DataContext = product;
             InitializeComponent();
-            unitIdComboBox.ItemsSource = db.Units.ToList();
+            unitIdComboBox.ItemsSource = unitService.GetUnits();
             unitIdComboBox.Text = product.UnitName;
         }
 
@@ -41,24 +42,24 @@ namespace ISPitanie.Views
 
         private void Button_Click_OK(object sender, RoutedEventArgs e)
         {
-            Product prod = db.Products.Where(x => x.Id == product.Id).First();
-            prod.Name = nameTextBox.Text;
-            prod.Norm = int.Parse(normTextBox.Text);
-            prod.Price = int.Parse(priceTextBox.Text);
-            if (proteinTextBox.Text == "") prod.Protein = null;
-            else prod.Protein = int.Parse(proteinTextBox.Text);
-            if (fatTextBox.Text == "") prod.Fat = null;
-            else prod.Fat = int.Parse(fatTextBox.Text);
-            if (carbohydrateTextBox.Text == "") prod.Carbohydrate = null;
-            else prod.Carbohydrate = int.Parse(carbohydrateTextBox.Text);
-            Unit sel = unitIdComboBox.SelectedItem as Unit;
-            prod.Unit = sel;
-            prod.UnitId = sel.Id;
-            if (vitamine_CTextBox.Text == "") prod.Vitamine_C = null;
-            else prod.Vitamine_C = int.Parse(vitamine_CTextBox.Text);
+            //ProductDTO prod = db.Products.Where(x => x.Id == product.Id).First();
+            //prod.Name = nameTextBox.Text;
+            //prod.Norm = int.Parse(normTextBox.Text);
+            //prod.Price = int.Parse(priceTextBox.Text);
+            //if (proteinTextBox.Text == "") prod.Protein = null;
+            //else prod.Protein = int.Parse(proteinTextBox.Text);
+            //if (fatTextBox.Text == "") prod.Fat = null;
+            //else prod.Fat = int.Parse(fatTextBox.Text);
+            //if (carbohydrateTextBox.Text == "") prod.Carbohydrate = null;
+            //else prod.Carbohydrate = int.Parse(carbohydrateTextBox.Text);
+            //Unit sel = unitIdComboBox.SelectedItem as Unit;
+            //prod.Unit = sel;
+            //prod.UnitId = sel.Id;
+            //if (vitamine_CTextBox.Text == "") prod.Vitamine_C = null;
+            //else prod.Vitamine_C = int.Parse(vitamine_CTextBox.Text);
 
-            db.SaveChanges();
-            this.Close();
+            //db.SaveChanges();
+            //this.Close();
             //var model = Mapper.Map<Product, ProductViewModel> (prod);
         }
 

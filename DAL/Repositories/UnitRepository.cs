@@ -1,6 +1,5 @@
-﻿using DAL.Entities;
-using DAL.Interfaces;
-using DAL.Repository;
+﻿using DAL.Interfaces;
+using DAL.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class UnitRepository : IRepository<Unit>
+    public class UnitRepository : IRepository<UnitDTO>
     {
         private PitanieContext db;
         public UnitRepository(PitanieContext context)
@@ -18,36 +17,36 @@ namespace DAL.Repositories
             db = context;
         }
 
-        public void Create(Unit item)
+        public void Create(UnitDTO item)
         {
             db.Units.Add(item);
         }
 
         public void Delete(int id)
         {
-            Unit unit = db.Units.Find(id);
+            UnitDTO unit = db.Units.Find(id);
             if (unit != null)
             {
                 db.Units.Remove(unit);
             }
         }
 
-        public IEnumerable<Unit> Find(Func<Unit, bool> predicate)
+        public IEnumerable<UnitDTO> Find(Func<UnitDTO, bool> predicate)
         {
             return db.Units.Where(predicate).ToList();
         }
 
-        public Unit Get(int id)
+        public UnitDTO Get(int id)
         {
             return db.Units.Find(id);
         }
 
-        public IEnumerable<Unit> GetAll()
+        public IEnumerable<UnitDTO> GetAll()
         {
             return db.Units;
         }
 
-        public void Update(Unit item)
+        public void Update(UnitDTO item)
         {
             db.Entry(item).State = EntityState.Modified;
         }

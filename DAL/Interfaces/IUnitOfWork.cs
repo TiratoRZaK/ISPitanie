@@ -1,4 +1,4 @@
-﻿using DAL.Entities;
+﻿using DAL.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +9,10 @@ namespace DAL.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        IRepository<Product> Products { get; }
-        IRepository<Dish> Dishes { get; }
-        IRepository<ProductDish> ProductDishes { get; }
-        IRepository<Unit> Units { get; }
+        IRepository<ProductDTO> Products { get; }
+        IRepository<DishDTO> Dishes { get; }
+        IRepository<ProductDishDTO> ProductDishes { get; }
+        IRepository<UnitDTO> Units { get; }
         void Save();
     }
 }

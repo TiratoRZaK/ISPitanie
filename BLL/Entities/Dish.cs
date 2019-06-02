@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace DAL.Entities
+namespace ISPitanie.BLL.Entities
 {
     public class Dish
     {
         public Dish()
         {
-            this.ProductsDishes = new HashSet<ProductDish>();
+            ProductsDishes = new HashSet<ProductDish>();
         }
 
         public int Id { get; set; }
@@ -21,7 +17,7 @@ namespace DAL.Entities
         public int? Fat { get; set; }
         public int? Protein { get; set; }
         public int? Carbohydrate { get; set; }
-        
-        public virtual ICollection<ProductDish> ProductsDishes { get; set; }
+
+        public virtual IEnumerable<ProductDish> ProductsDishes { get; set; }
     }
 }

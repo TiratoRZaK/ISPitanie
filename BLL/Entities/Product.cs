@@ -1,18 +1,20 @@
-﻿using ISPitanie.BLL.Entities;
-using ISPitanie.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ISPitanie.Models
+namespace ISPitanie.BLL.Entities
 {
-    public class ProductViewModel
+    public class Product
     {
+        public Product()
+        {
+            ProductsDishes = new HashSet<ProductDish>();
+        }
         public int Id { get; set; }
         public string Name { get; set; }
-        public string UnitName { get; set; }
+        public string Unit { get; set; }
         public int Norm { get; set; }
         public int Price { get; set; }
         public int? Vitamine_C { get; set; }
@@ -20,12 +22,6 @@ namespace ISPitanie.Models
         public int? Fat { get; set; }
         public int? Carbohydrate { get; set; }
         public int Count { get; set; }
-
-        public IEnumerable<ProductDish> ProductDishes { get; set; }
-
-        public ProductViewModel()
-        {
-            ProductDishes = new List<ProductDish>();
-        }
+        public virtual IEnumerable<ProductDish> ProductsDishes { get; set; }
     }
 }

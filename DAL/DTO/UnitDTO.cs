@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Entities
+namespace DAL.DTO
 {
-    public class Unit
+    public class UnitDTO
     {
-        public Unit()
+        public UnitDTO()
         {
-            this.Products = new HashSet<Product>();
+            this.Products = new HashSet<ProductDTO>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
 
-       public virtual ICollection<Product> Products { get; set; }
+       public virtual IEnumerable<ProductDTO> Products { get; set; }
 
     }
 }

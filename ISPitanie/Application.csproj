@@ -54,6 +54,7 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -72,26 +73,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="MapperConfiguration.cs" />
     <Compile Include="ViewModels\ProductsViewModel.cs" />
-    <Compile Include="Views\AddDishesForm.xaml.cs">
-      <DependentUpon>AddDishesForm.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\AddProductForm.xaml.cs">
-      <DependentUpon>AddProductForm.xaml</DependentUpon>
-    </Compile>
-    <Page Include="Views\AddDishesForm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\EditDishesForm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\EditProductForm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -100,20 +82,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\EditDishesForm.xaml.cs">
-      <DependentUpon>EditDishesForm.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\EditProductForm.xaml.cs">
-      <DependentUpon>EditProductForm.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\AddProductForm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -134,8 +106,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\Dish.datasource" />
-    <None Include="Properties\DataSources\Product.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -148,6 +118,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{5bd74197-e0fa-4cbe-901c-9e25f3070283}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{378E1ACA-DF97-4E8F-BF20-C643687200BF}</Project>
       <Name>DAL</Name>

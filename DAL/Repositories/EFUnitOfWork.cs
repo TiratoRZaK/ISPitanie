@@ -1,6 +1,5 @@
-﻿using DAL.Entities;
-using DAL.Interfaces;
-using DAL.Repository;
+﻿using DAL.Interfaces;
+using DAL.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +25,7 @@ namespace DAL.Repositories
         {
             db = new PitanieContext(connectionString);
         }
-        public IRepository<Product> Products
+        public IRepository<ProductDTO> Products
         {
             get
             {
@@ -36,7 +35,7 @@ namespace DAL.Repositories
             }
         }
 
-        public IRepository<Dish> Dishes
+        public IRepository<DishDTO> Dishes
         {
             get
             {
@@ -46,7 +45,7 @@ namespace DAL.Repositories
             }
         }
 
-        public IRepository<ProductDish> ProductDishes
+        public IRepository<ProductDishDTO> ProductDishes
         {
             get
             {
@@ -56,7 +55,7 @@ namespace DAL.Repositories
             }
         }
 
-        public IRepository<Unit> Units
+        public IRepository<UnitDTO> Units
         {
             get
             {

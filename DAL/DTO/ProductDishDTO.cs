@@ -4,16 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL.Entities
+namespace DAL.DTO
 {
-    public class ProductDish
+    public class ProductDishDTO
     {
         public int Id { get; set; }
         public int DishId { get; set; }
         public int ProductId { get; set; }
         public int Norm { get; set; }
 
-        public virtual Dish Dish { get; set; }
-        public virtual Product Product { get; set; }
+        public virtual DishDTO Dish { get; set; }
+        public virtual ProductDTO Product { get; set; }
     }
 }

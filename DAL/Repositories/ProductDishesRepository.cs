@@ -1,6 +1,5 @@
-﻿using DAL.Entities;
-using DAL.Interfaces;
-using DAL.Repository;
+﻿using DAL.Interfaces;
+using DAL.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Repositories
 {
-    public class ProductDishesRepository : IRepository<ProductDish>
+    public class ProductDishesRepository : IRepository<ProductDishDTO>
     {
         private PitanieContext db;
 
@@ -19,36 +18,36 @@ namespace DAL.Repositories
             db = context;
         }
 
-        public void Create(ProductDish item)
+        public void Create(ProductDishDTO item)
         {
             db.ProductsDishes.Add(item);
         }
 
         public void Delete(int id)
         {
-            ProductDish productsDish = db.ProductsDishes.Find(id);
+            ProductDishDTO productsDish = db.ProductsDishes.Find(id);
             if (productsDish != null)
             {
                 db.ProductsDishes.Remove(productsDish);
             }
         }
 
-        public IEnumerable<ProductDish> Find(Func<ProductDish, bool> predicate)
+        public IEnumerable<ProductDishDTO> Find(Func<ProductDishDTO, bool> predicate)
         {
             return db.ProductsDishes.Where(predicate).ToList();
         }
 
-        public ProductDish Get(int id)
+        public ProductDishDTO Get(int id)
         {
             return db.ProductsDishes.Find(id);
         }
 
-        public IEnumerable<ProductDish> GetAll()
+        public IEnumerable<ProductDishDTO> GetAll()
         {
             return db.ProductsDishes;
         }
 
-        public void Update(ProductDish item)
+        public void Update(ProductDishDTO item)
         {
             db.Entry(item).State = EntityState.Modified;
         }

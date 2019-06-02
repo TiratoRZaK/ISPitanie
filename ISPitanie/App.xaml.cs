@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using DAL.DTO;
+using DAL.Interfaces;
+using DAL.Repositories;
+using ISPitanie.BLL.Entities;
+using ISPitanie.Interfaces;
+using ISPitanie.Services;
 using System.Windows;
 
 namespace ISPitanie
@@ -15,7 +16,18 @@ namespace ISPitanie
     {
         public App()
         {
-            MapperConfiguration.Init();
+            Mapper.Initialize(cfg => {
+                cfg.CreateMap<DishDTO, Dish>();
+                cfg.CreateMap<ProductDTO, Product>().ForMember("Unit", opt => opt.MapFrom(c => c.Unit.Name));
+                cfg.CreateMap<ProductDishDTO, ProductDish>();
+                cfg.CreateMap<UnitDTO, Unit>();
+            });
+
+
+            IUnitOfWork unitOfWork = new EFUnitOfWork();
+            IProductService productService = new ProductService(unitOfWork);
+            IDishService dishService = new DishService(unitOfWork);
+            MainWindow window = new MainWindow(productService, dishService);
         }
     }
 }
