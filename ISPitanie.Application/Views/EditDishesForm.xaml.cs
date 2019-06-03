@@ -1,5 +1,5 @@
-﻿using ISPitanie.DTO;
-using System.Windows;
+﻿using System.Windows;
+using ISPitanie.BLL.Entities;
 
 namespace ISPitanie.Views
 {
@@ -8,8 +8,9 @@ namespace ISPitanie.Views
     /// </summary>
     public partial class EditDishesForm : Window
     {
-        DishDTO dish;
-        public EditDishesForm(DishDTO dish)
+        private Dish dish;
+
+        public EditDishesForm(Dish dish)
         {
             this.dish = dish;
             DataContext = dish;

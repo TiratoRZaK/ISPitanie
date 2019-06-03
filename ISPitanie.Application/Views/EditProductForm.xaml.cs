@@ -1,20 +1,7 @@
-﻿using AutoMapper;
-using ISPitanie.DTO;
+﻿using System.Windows;
+using ISPitanie.BLL.Entities;
 using ISPitanie.Interfaces;
 using ISPitanie.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace ISPitanie.Views
 {
@@ -23,12 +10,13 @@ namespace ISPitanie.Views
     /// </summary>
     public partial class EditProductForm : Window
     {
-        ProductViewModel product;
-        IProductService productService;
-        IUnitService unitService;
-        public EditProductForm(ProductDTO prod)
+        private ProductViewModel product;
+        private IProductService productService;
+        private IUnitService unitService;
+
+        public EditProductForm(Product prod)
         {
-            ProductViewModel productView = new ProductViewModel(prod.Id);
+            ProductViewModel productView = new ProductViewModel(); // prod.Id
             product = productView;
             this.DataContext = product;
             InitializeComponent();

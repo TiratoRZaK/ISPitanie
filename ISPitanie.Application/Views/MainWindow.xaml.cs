@@ -61,7 +61,7 @@ namespace ISPitanie
             //editProduct.Show();
         }
 
-        private void DeleteProduct(object sender, RoutedEventArgs e)
+        private void DeleteProductButton_Click(object sender, RoutedEventArgs e)
         {
             var cur = productDataGrid.CurrentItem as Product;
             MessageBoxResult res = MessageBox.Show("Вы уверены что хотите удалить продукт " + cur.Name + " безвозвратно?", "Удаление продукта", MessageBoxButton.YesNo);
@@ -73,7 +73,7 @@ namespace ISPitanie
             productDataGrid.Items.Refresh();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void AddProductButton_Click(object sender, RoutedEventArgs e)
         {
             //AddProductForm addProduct = new AddProductForm();
             //addProduct.Show();

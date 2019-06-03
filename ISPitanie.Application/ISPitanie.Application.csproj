@@ -74,6 +74,22 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModels\ProductsViewModel.cs" />
+    <Page Include="Views\AddDishesForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\AddProductForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\EditDishesForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\EditProductForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -81,6 +97,18 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\AddDishesForm.xaml.cs">
+      <DependentUpon>AddDishesForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddProductForm.xaml.cs">
+      <DependentUpon>AddProductForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditDishesForm.xaml.cs">
+      <DependentUpon>EditDishesForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditProductForm.xaml.cs">
+      <DependentUpon>EditProductForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

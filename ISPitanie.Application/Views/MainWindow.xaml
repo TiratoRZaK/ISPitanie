@@ -32,7 +32,7 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Button Content="Добавить новый продукт" Padding="3" Margin="5,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="auto" Height="25" Grid.Row="0" Grid.ColumnSpan="2" Click="Button_Click" />
+                        <Button Content="Добавить новый продукт" Padding="3" Margin="5,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="auto" Height="25" Grid.Row="0" Grid.ColumnSpan="2" Click="AddProductButton_Click" />
                         <DataGrid x:Name="productDataGrid" Margin="5,40,5,5" Grid.ColumnSpan="2" ItemsSource="{Binding}" Grid.RowSpan="2" IsSynchronizedWithCurrentItem="False" AutoGenerateColumns="False" IsReadOnly="True" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
                             <DataGrid.Columns>
                                 <DataGridTextColumn  Binding="{Binding Name}" Header="Наименование" Width="0.25*" />
@@ -48,7 +48,7 @@
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
                                                 <Button Width="80" HorizontalAlignment="Left" Click="EditProduct" CommandParameter="{Binding Id}" Content="Изменить" />
-                                                <Button Width="80" HorizontalAlignment="Right" Margin="10,0,0,0" Click="DeleteProduct" CommandParameter="{Binding Id}" Content="Удалить" />
+                                                <Button Width="80" HorizontalAlignment="Right" Margin="10,0,0,0" Click="DeleteProductButton_Click" CommandParameter="{Binding Id}" Content="Удалить" />
                                             </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
