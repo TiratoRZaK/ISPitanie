@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace DAL.DTO
 {
@@ -21,7 +17,7 @@ namespace DAL.DTO
         public int? Fat { get; set; }
         public int? Protein { get; set; }
         public int? Carbohydrate { get; set; }
-        
+
         public virtual IEnumerable<ProductDishDTO> ProductsDishes { get; set; }
     }
 }

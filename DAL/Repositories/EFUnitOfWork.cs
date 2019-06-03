@@ -1,10 +1,6 @@
-﻿using DAL.Interfaces;
+﻿using System;
 using DAL.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DAL.Interfaces;
 
 namespace DAL.Repositories
 {
@@ -25,12 +21,15 @@ namespace DAL.Repositories
         {
             db = new PitanieContext(connectionString);
         }
+
         public IRepository<ProductDTO> Products
         {
             get
             {
                 if (productRepository == null)
+                {
                     productRepository = new ProductRepository(db);
+                }
                 return productRepository;
             }
         }
@@ -40,7 +39,9 @@ namespace DAL.Repositories
             get
             {
                 if (dishRepository == null)
+                {
                     dishRepository = new DishRepository(db);
+                }
                 return dishRepository;
             }
         }
@@ -50,7 +51,9 @@ namespace DAL.Repositories
             get
             {
                 if (productDishesRepository == null)
+                {
                     productDishesRepository = new ProductDishesRepository(db);
+                }
                 return productDishesRepository;
             }
         }
@@ -60,7 +63,9 @@ namespace DAL.Repositories
             get
             {
                 if (unitRepository == null)
+                {
                     unitRepository = new UnitRepository(db);
+                }
                 return unitRepository;
             }
         }

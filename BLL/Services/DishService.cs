@@ -1,19 +1,17 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Linq;
+using AutoMapper;
 using DAL.DTO;
 using DAL.Interfaces;
 using ISPitanie.BLL.Entities;
 using ISPitanie.Infrastructure;
 using ISPitanie.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ISPitanie.Services
 {
     public class DishService : IDishService
     {
-        IUnitOfWork db { get; set; }
+        private IUnitOfWork db { get; set; }
 
         public DishService(IUnitOfWork db)
         {
@@ -25,10 +23,12 @@ namespace ISPitanie.Services
             if (dish == null)
             {
                 throw new ValidationException("Данного блюда не существует", "");
-            } else if (product == null)
+            }
+            else if (product == null)
             {
                 throw new ValidationException("Данного продукта не существует", "");
-            } else if (norm <= 0)
+            }
+            else if (norm <= 0)
             {
                 throw new ValidationException("Переданна некорректная норма", "");
             }
@@ -53,7 +53,7 @@ namespace ISPitanie.Services
             IEnumerable<ProductDTO> products = new List<ProductDTO>();
             foreach (var item in GetProductDishes(id))
             {
-                if(item.DishId == id.Value)
+                if (item.DishId == id.Value)
                 {
                     products.ToList().Add(db.Products.Get(item.ProductId));
                 }
@@ -64,7 +64,7 @@ namespace ISPitanie.Services
         public IEnumerable<Dish> GetDishes()
         {
             // Настройка AutoMapper
-            
+
             // сопоставление
             return Mapper.Map<IEnumerable<DishDTO>, List<Dish>>(db.Dishes.GetAll());
         }
@@ -102,12 +102,12 @@ namespace ISPitanie.Services
 
         public IEnumerable<ProductDish> GetProductDishes(int? id)
         {
-            if(id == null)
+            if (id == null)
             {
                 throw new ValidationException("Передано несуществующее блюдо", "");
             }
             var dish = db.Dishes.Get(id.Value);
-            if(dish == null)
+            if (dish == null)
             {
                 throw new ValidationException("Блюдо не найдено", "");
             }

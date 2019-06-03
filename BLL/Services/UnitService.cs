@@ -1,20 +1,18 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using AutoMapper;
 using DAL.DTO;
 using DAL.Interfaces;
 using ISPitanie.BLL.Entities;
 using ISPitanie.Infrastructure;
 using ISPitanie.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ISPitanie.Services
 {
     public class UnitService : IUnitService
     {
-        IUnitOfWork db { get; set; }
+        private IUnitOfWork db { get; set; }
 
         public UnitService(IUnitOfWork db)
         {
@@ -44,7 +42,7 @@ namespace ISPitanie.Services
         {
             if (name == null)
                 throw new ValidationException("Не верное наименование единицы измерения", "");
-            var unit = db.Units.GetAll().Where(x=>x.Name.Equals(name)).First();
+            var unit = db.Units.GetAll().Where(x => x.Name.Equals(name)).First();
             if (unit == null)
                 throw new ValidationException("Единица измерения не найдена", "");
             return Mapper.Map<UnitDTO, Unit>(unit);

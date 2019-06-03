@@ -1,17 +1,16 @@
-﻿using DAL.Interfaces;
-using DAL.DTO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DAL.DTO;
+using DAL.Interfaces;
 
 namespace DAL.Repositories
 {
     public class UnitRepository : IRepository<UnitDTO>
     {
         private PitanieContext db;
+
         public UnitRepository(PitanieContext context)
         {
             db = context;

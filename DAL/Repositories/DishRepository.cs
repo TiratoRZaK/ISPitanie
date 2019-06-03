@@ -1,17 +1,16 @@
-﻿using DAL.Interfaces;
-using DAL.DTO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DAL.DTO;
+using DAL.Interfaces;
 
 namespace DAL.Repositories
 {
     public class DishRepository : IRepository<DishDTO>
     {
         private PitanieContext db;
+
         public DishRepository(PitanieContext context)
         {
             db = context;

@@ -1,9 +1,5 @@
-﻿using DAL.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using DAL.DTO;
 
 namespace DAL.Interfaces
 {
@@ -13,6 +9,7 @@ namespace DAL.Interfaces
         IRepository<DishDTO> Dishes { get; }
         IRepository<ProductDishDTO> ProductDishes { get; }
         IRepository<UnitDTO> Units { get; }
+
         void Save();
     }
 }

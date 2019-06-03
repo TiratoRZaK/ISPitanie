@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ISPitanie.BLL.Entities
+﻿namespace ISPitanie.BLL.Entities
 {
     public class ProductDish
     {
@@ -14,9 +8,7 @@ namespace ISPitanie.BLL.Entities
         public int Norm { get; set; }
 
         public virtual Dish Dish { get; set; }
-        public virtual Product Product
-        {
-            get; set;
-        }
+
+        public virtual Product Product { get; set; }
     }
 }

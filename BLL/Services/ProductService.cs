@@ -1,25 +1,23 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Linq;
+using AutoMapper;
 using DAL.DTO;
 using DAL.Interfaces;
 using ISPitanie.BLL.Entities;
 using ISPitanie.Infrastructure;
 using ISPitanie.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ISPitanie.Services
 {
     public class ProductService : IProductService
     {
-        IUnitOfWork db { get; set; }
+        private IUnitOfWork db { get; set; }
 
         public ProductService(IUnitOfWork db)
         {
             this.db = db;
         }
+
         public void CreateProduct(Product product)
         {
             if (product == null)
@@ -87,7 +85,7 @@ namespace ISPitanie.Services
             IEnumerable<Product> prods = Mapper.Map<IEnumerable<ProductDTO>, List<Product>>(db.Products.GetAll().ToList()).ToList();
             return prods;
         }
-        
+
         public void RemoveProduct(Product product)
         {
             if (product == null)

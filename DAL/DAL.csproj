@@ -55,7 +55,7 @@
     <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DTO\PitanieContext.cs" />
+    <Compile Include="PitanieContext.cs" />
     <Compile Include="Repositories\DishRepository.cs" />
     <Compile Include="Repositories\EFUnitOfWork.cs" />
     <Compile Include="Repositories\ProductDishesRepository.cs" />

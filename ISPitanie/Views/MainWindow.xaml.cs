@@ -1,14 +1,14 @@
-﻿using ISPitanie.BLL.Entities;
-using ISPitanie.Interfaces;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows;
+using ISPitanie.BLL.Entities;
+using ISPitanie.Interfaces;
 
 namespace ISPitanie
 {
     public partial class MainWindow : Window
     {
-        IProductService productService;
-        IDishService dishService;
+        private IProductService productService;
+        private IDishService dishService;
 
         public MainWindow()
         {
@@ -18,7 +18,7 @@ namespace ISPitanie
         public MainWindow(IProductService productService, IDishService dishService)
         {
             InitializeComponent();
-            
+
             this.productService = productService;
             this.dishService = dishService;
             productDataGrid.ItemsSource = productService.GetProducts();
@@ -31,7 +31,6 @@ namespace ISPitanie
         {
             productService.Dispose();
         }
-
 
         private void ShowHideDetails(object sender, RoutedEventArgs e)
         {

@@ -9,40 +9,40 @@
 
     <DockPanel LastChildFill="True">
         <!--<Button DockPanel.Dock="Bottom" Background="BlanchedAlmond" Content="Нижняя панель" />-->
-        <Button DockPanel.Dock="Bottom" Content="Refresh" Click="Button_Click_1" Height="25" Width="75"/>
+        <Button DockPanel.Dock="Bottom" Content="Refresh" Click="Button_Click_1" Height="25" Width="75" />
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="235*"/>
-                <RowDefinition Height="164*"/>
+                <RowDefinition Height="235*" />
+                <RowDefinition Height="164*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Grid.Row="1" Content="Календарь" Margin="10"/>
+            <Button Grid.Column="0" Grid.Row="1" Content="Календарь" Margin="10" />
             <Button Grid.Column="1" Grid.Row="1" Content="Панель информации" Margin="10" />
             <TabControl MinHeight="100" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="10" Height="auto" Width="auto" IsSynchronizedWithCurrentItem="True" SelectedIndex="0">
                 <TabItem Header="Продукты">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
+                            <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Button Content="Добавить новый продукт" Padding="3" Margin="5,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="auto" Height="25" Grid.Row="0" Grid.ColumnSpan="2" Click="Button_Click"/>
+                        <Button Content="Добавить новый продукт" Padding="3" Margin="5,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="auto" Height="25" Grid.Row="0" Grid.ColumnSpan="2" Click="Button_Click" />
                         <DataGrid x:Name="productDataGrid" Margin="5,40,5,5" Grid.ColumnSpan="2" ItemsSource="{Binding}" Grid.RowSpan="2" IsSynchronizedWithCurrentItem="False" AutoGenerateColumns="False" IsReadOnly="True" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
                             <DataGrid.Columns>
-                                <DataGridTextColumn  Binding="{Binding Name}" Header="Наименование" Width="0.25*"/>
-                                <DataGridTextColumn  Binding="{Binding Unit}" Header="Ед. изм." Width="0.1*"/>
-                                <DataGridTextColumn Binding="{Binding Norm}" Header="Норма на человека" Width="0.225*"/>
-                                <DataGridTextColumn  Binding="{Binding Price}" Header="Цена" Width="0.1*"/>
-                                <DataGridTextColumn  Binding="{Binding Protein}" Header="Белки" Width="0.1*"/>
-                                <DataGridTextColumn  Binding="{Binding Fat}" Header="Жиры" Width="0.1*"/>
-                                <DataGridTextColumn  Binding="{Binding Carbohydrate}" Header="Углеводы" Width="0.1*"/>
-                                <DataGridTextColumn  Binding="{Binding Vitamine_C}" Header="Витамин C" Width="0.1*"/>
+                                <DataGridTextColumn  Binding="{Binding Name}" Header="Наименование" Width="0.25*" />
+                                <DataGridTextColumn  Binding="{Binding Unit}" Header="Ед. изм." Width="0.1*" />
+                                <DataGridTextColumn Binding="{Binding Norm}" Header="Норма на человека" Width="0.225*" />
+                                <DataGridTextColumn  Binding="{Binding Price}" Header="Цена" Width="0.1*" />
+                                <DataGridTextColumn  Binding="{Binding Protein}" Header="Белки" Width="0.1*" />
+                                <DataGridTextColumn  Binding="{Binding Fat}" Header="Жиры" Width="0.1*" />
+                                <DataGridTextColumn  Binding="{Binding Carbohydrate}" Header="Углеводы" Width="0.1*" />
+                                <DataGridTextColumn  Binding="{Binding Vitamine_C}" Header="Витамин C" Width="0.1*" />
                                 <DataGridTemplateColumn Header="Функции" Width="170">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -67,12 +67,12 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Button Content="Добавить новое блюдо" Padding="3" Margin="5,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="auto" Height="25" Grid.Row="0" Grid.ColumnSpan="2" Click="Button_Click"/>
+                        <Button Content="Добавить новое блюдо" Padding="3" Margin="5,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="auto" Height="25" Grid.Row="0" Grid.ColumnSpan="2" Click="Button_Click" />
                         <DataGrid x:Name="dishesDataGrid" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="5,40,5,5" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="2" Grid.RowSpan="2" IsSynchronizedWithCurrentItem="False" AutoGenerateColumns="False" IsReadOnly="True" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
                             <DataGrid.Columns>
-                                <DataGridTextColumn x:Name="nameDishes" Binding="{Binding Name}" Header="Наименование" Width="0.25*"/>
-                                <DataGridTextColumn x:Name="normDishes" Binding="{Binding Norm}" Header="Норма на человека" Width="0.225*"/>
-                                <DataGridTextColumn x:Name="priceDishes" Binding="{Binding Price}" Header="Цена" Width="0.1*"/>
+                                <DataGridTextColumn x:Name="nameDishes" Binding="{Binding Name}" Header="Наименование" Width="0.25*" />
+                                <DataGridTextColumn x:Name="normDishes" Binding="{Binding Norm}" Header="Норма на человека" Width="0.225*" />
+                                <DataGridTextColumn x:Name="priceDishes" Binding="{Binding Price}" Header="Цена" Width="0.1*" />
                                 <DataGridTemplateColumn x:Name="listProductDishes" Header="Список продуктов" Width="0.25*">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -97,22 +97,22 @@
                     </Grid>-->
                 </TabItem>
                 <TabItem Header="Меню">
-                    <Grid Background="#FFE5E5E5"/>
+                    <Grid Background="#FFE5E5E5" />
                 </TabItem>
                 <TabItem Header="Отчёты">
-                    <Grid Background="#FFE5E5E5"/>
+                    <Grid Background="#FFE5E5E5" />
                 </TabItem>
                 <TabItem Header="Договора">
-                    <Grid Background="#FFE5E5E5"/>
+                    <Grid Background="#FFE5E5E5" />
                 </TabItem>
                 <TabItem Header="Счёт-фактуры">
-                    <Grid Background="#FFE5E5E5"/>
+                    <Grid Background="#FFE5E5E5" />
                 </TabItem>
                 <TabItem Header="Поддержка">
-                    <Grid Background="#FFE5E5E5"/>
+                    <Grid Background="#FFE5E5E5" />
                 </TabItem>
                 <TabItem Header="Шаблоны">
-                    <Grid Background="#FFE5E5E5"/>
+                    <Grid Background="#FFE5E5E5" />
                 </TabItem>
             </TabControl>
         </Grid>
