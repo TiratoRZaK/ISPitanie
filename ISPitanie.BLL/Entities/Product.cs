@@ -11,7 +11,7 @@ namespace ISPitanie.BLL.Entities
 
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Unit { get; set; }
+        public string UnitName { get; set; }
         public int Norm { get; set; }
         public int Price { get; set; }
         public int? Vitamine_C { get; set; }

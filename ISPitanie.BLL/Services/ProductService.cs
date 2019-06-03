@@ -37,10 +37,10 @@ namespace ISPitanie.Services
                 Protein = product.Protein,
                 Count = product.Count,
                 Norm = product.Norm,
-                UnitId = db.Units.GetAll().Where(x => x.Name == product.Unit).First().Id,
+                UnitId = db.Units.GetAll().Where(x => x.Name == product.UnitName).First().Id,
                 Vitamine_C = product.Vitamine_C,
                 ProductsDishes = prodDishes,
-                Unit = db.Units.GetAll().Where(x => x.Name == product.Unit).First()
+                Unit = db.Units.GetAll().Where(x => x.Name == product.UnitName).First()
             };
             db.Products.Create(productDto);
             db.Save();
@@ -59,7 +59,7 @@ namespace ISPitanie.Services
             if (product == null)
                 throw new ValidationException("Подукт не найден", "");
 
-            return new Product { Id = id.Value, Name = product.Name, Norm = product.Norm, Carbohydrate = product.Carbohydrate, Fat = product.Fat, Price = product.Price, ProductsDishes = GetProductDishes(product.Id), Protein = product.Protein, Vitamine_C = product.Vitamine_C, Count = product.Count, Unit = product.Unit.Name };
+            return new Product { Id = id.Value, Name = product.Name, Norm = product.Norm, Carbohydrate = product.Carbohydrate, Fat = product.Fat, Price = product.Price, ProductsDishes = GetProductDishes(product.Id), Protein = product.Protein, Vitamine_C = product.Vitamine_C, Count = product.Count, UnitName = product.Unit.Name };
         }
 
         public IEnumerable<ProductDish> GetProductDishes(int? id)
