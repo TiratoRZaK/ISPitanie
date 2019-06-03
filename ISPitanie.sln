@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "ISPitanie\Application.csproj", "{65ECC281-6BB5-40F4-B5E5-E036DAAF365C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISPitanie.Application", "ISPitanie.Application\ISPitanie.Application.csproj", "{65ECC281-6BB5-40F4-B5E5-E036DAAF365C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{378E1ACA-DF97-4E8F-BF20-C643687200BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISPitanie.DAL", "ISPitanie.DAL\ISPitanie.DAL.csproj", "{378E1ACA-DF97-4E8F-BF20-C643687200BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{5BD74197-E0FA-4CBE-901C-9E25F3070283}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISPitanie.BLL", "ISPitanie.BLL\ISPitanie.BLL.csproj", "{5BD74197-E0FA-4CBE-901C-9E25F3070283}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

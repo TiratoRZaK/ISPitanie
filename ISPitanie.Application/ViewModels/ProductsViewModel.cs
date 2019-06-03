@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using ISPitanie.BLL.Entities;
-
-namespace ISPitanie.Models
+﻿namespace ISPitanie.Models
 {
     public class ProductViewModel
     {
@@ -16,11 +13,11 @@ namespace ISPitanie.Models
         public int? Carbohydrate { get; set; }
         public int Count { get; set; }
 
-        public IEnumerable<ProductDish> ProductDishes { get; set; }
+        //public IEnumerable<ProductDish> ProductDishes { get; set; }
 
-        public ProductViewModel()
-        {
-            ProductDishes = new List<ProductDish>();
-        }
+        //public ProductViewModel()
+        //{
+        //    ProductDishes = new List<ProductDish>();
+        //}
     }
 }

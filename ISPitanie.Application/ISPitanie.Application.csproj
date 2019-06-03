@@ -118,13 +118,13 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BLL\BLL.csproj">
+    <ProjectReference Include="..\ISPitanie.BLL\ISPitanie.BLL.csproj">
       <Project>{5bd74197-e0fa-4cbe-901c-9e25f3070283}</Project>
-      <Name>BLL</Name>
+      <Name>ISPitanie.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DAL\DAL.csproj">
+    <ProjectReference Include="..\ISPitanie.DAL\ISPitanie.DAL.csproj">
       <Project>{378E1ACA-DF97-4E8F-BF20-C643687200BF}</Project>
-      <Name>DAL</Name>
+      <Name>ISPitanie.DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
