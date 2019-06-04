@@ -19,10 +19,10 @@ namespace ISPitanie.Models
         public int? Carbohydrate { get; set; }
         public int Count { get; set; }
 
-        public ProductViewModel(int Id)
-        {
-            Product prod = productService.GetProduct(Id);
+        //public ProductViewModel(int Id)
+        //{
+        //    Product prod = productService.GetProduct(Id);
 
-        }
+        //}
     }
 }

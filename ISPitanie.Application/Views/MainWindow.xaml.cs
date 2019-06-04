@@ -25,13 +25,18 @@ namespace ISPitanie
             ProductService = new ProductService(unitOfWork);
             //DishService = new DishService(unitOfWork);
             InitializeComponent();
-            List<ProductViewModel> productModels = Mapper.Map<IEnumerable<Product>, List<ProductViewModel>>(ProductService.GetProducts()).ToList();
-                                                 //Mapper.Map<IEnumerable<ProductViewModel>>(ProductService.GetProducts()).ToList();
-            productDataGrid.ItemsSource = productModels;
+            FetchProducts();
             //var dishModels = Mapper.Map<IEnumerable<DishViewModel>>(DishService.GetDishes());
             //dishesDataGrid.ItemsSource = dishModels.ToList();
 
             this.Closing += MainWindow_Closing;
+        }
+
+        private void FetchProducts()
+        {
+            var products = ProductService.GetProducts().ToList();
+            List<ProductViewModel> productModels = Mapper.Map<List<Product>, List<ProductViewModel>>(products);
+            productDataGrid.ItemsSource = productModels;
         }
 
         public MainWindow(IProductService productService, IDishService dishService) : this()

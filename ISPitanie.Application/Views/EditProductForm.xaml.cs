@@ -14,14 +14,17 @@ namespace ISPitanie.Views
         private IProductService productService;
         private IUnitService unitService;
 
-        public EditProductForm(ProductViewModel prod)
+        public EditProductForm(ProductViewModel product)
         {
-            ProductViewModel productView = new ProductViewModel(prod.Id); // prod.Id
-            product = productView;
-            this.DataContext = product;
+            //ProductViewModel productView = new ProductViewModel(product.Id); // prod.Id
+
+            this.product = product;
+            this.DataContext = this.product;
+
             InitializeComponent();
+
             unitIdComboBox.ItemsSource = unitService.GetUnits();
-            unitIdComboBox.Text = product.UnitName;
+            unitIdComboBox.Text = this.product.UnitName;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
