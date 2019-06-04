@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISPitanie.DAL", "ISPitanie.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISPitanie.BLL", "ISPitanie.BLL\ISPitanie.BLL.csproj", "{5BD74197-E0FA-4CBE-901C-9E25F3070283}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ISPitanie.UnitTests", "ISPitanie.UnitTests\ISPitanie.UnitTests.csproj", "{6F2F5195-3152-45B2-9B0E-4EF336B54C2C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{5BD74197-E0FA-4CBE-901C-9E25F3070283}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BD74197-E0FA-4CBE-901C-9E25F3070283}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BD74197-E0FA-4CBE-901C-9E25F3070283}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F2F5195-3152-45B2-9B0E-4EF336B54C2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F2F5195-3152-45B2-9B0E-4EF336B54C2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F2F5195-3152-45B2-9B0E-4EF336B54C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F2F5195-3152-45B2-9B0E-4EF336B54C2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
