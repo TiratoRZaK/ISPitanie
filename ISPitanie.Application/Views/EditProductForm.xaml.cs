@@ -14,9 +14,9 @@ namespace ISPitanie.Views
         private IProductService productService;
         private IUnitService unitService;
 
-        public EditProductForm(Product prod)
+        public EditProductForm(ProductViewModel prod)
         {
-            ProductViewModel productView = new ProductViewModel(); // prod.Id
+            ProductViewModel productView = new ProductViewModel(prod.Id); // prod.Id
             product = productView;
             this.DataContext = product;
             InitializeComponent();
@@ -54,6 +54,11 @@ namespace ISPitanie.Views
         private void Button_Click_Cancel(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void UnitIdComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

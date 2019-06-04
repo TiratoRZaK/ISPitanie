@@ -3,8 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ISPitanie.Views"
-        xmlns:ISPitanie="clr-namespace:ISPitanie" x:Name="EditProductForm1" x:Class="ISPitanie.Views.EditProductForm"
+        x:Class="ISPitanie.Views.EditProductForm"
         mc:Ignorable="d"
         Title="Изменение продукта" Height="409" Width="489.3" Loaded="Window_Loaded" VerticalContentAlignment="Center" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
 
@@ -57,7 +56,7 @@
             </TextBox.Text>
         </TextBox>
         <Label Content="Единица измерения:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,5,0,5" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="123"/>
-        <ComboBox x:Name="unitIdComboBox" Grid.Column="1" DisplayMemberPath="Name" HorizontalAlignment="Left" Height="22" ItemsSource="{Binding}" Margin="3,7,0,7" Grid.Row="1" VerticalAlignment="Center" Width="201">
+        <ComboBox x:Name="unitIdComboBox" Grid.Column="1" DisplayMemberPath="Name" HorizontalAlignment="Left" Height="22" ItemsSource="{Binding}" Margin="3,7,0,7" Grid.Row="1" VerticalAlignment="Center" Width="201" SelectionChanged="UnitIdComboBox_SelectionChanged">
             <ComboBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel/>

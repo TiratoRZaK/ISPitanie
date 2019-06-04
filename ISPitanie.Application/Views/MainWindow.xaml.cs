@@ -3,34 +3,41 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using AutoMapper;
+using DAL.DTO;
+using DAL.Interfaces;
+using DAL.Repositories;
 using ISPitanie.BLL.Entities;
 using ISPitanie.Interfaces;
 using ISPitanie.Models;
+using ISPitanie.Services;
+using ISPitanie.Views;
 
 namespace ISPitanie
 {
     public partial class MainWindow : Window
     {
+        private IUnitOfWork unitOfWork = new EFUnitOfWork();
         private IProductService ProductService { get; set; }
         private IDishService DishService { get; set; }
 
         public MainWindow()
         {
+            ProductService = new ProductService(unitOfWork);
+            //DishService = new DishService(unitOfWork);
             InitializeComponent();
+            List<ProductViewModel> productModels = Mapper.Map<IEnumerable<Product>, List<ProductViewModel>>(ProductService.GetProducts()).ToList();
+                                                 //Mapper.Map<IEnumerable<ProductViewModel>>(ProductService.GetProducts()).ToList();
+            productDataGrid.ItemsSource = productModels;
+            //var dishModels = Mapper.Map<IEnumerable<DishViewModel>>(DishService.GetDishes());
+            //dishesDataGrid.ItemsSource = dishModels.ToList();
+
+            this.Closing += MainWindow_Closing;
         }
 
         public MainWindow(IProductService productService, IDishService dishService) : this()
         {
             this.ProductService = productService;
             this.DishService = dishService;
-
-            var products = productService.GetProducts();
-            var productModels = Mapper.Map<IEnumerable<ProductViewModel>>(products);
-
-            productDataGrid.ItemsSource = productModels.ToList();
-            //dishesDataGrid.ItemsSource = this.dishService.GetDishes().ToList();
-
-            this.Closing += MainWindow_Closing;
         }
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)
@@ -55,10 +62,10 @@ namespace ISPitanie
 
         private void EditProduct(object sender, RoutedEventArgs e)
         {
-            Product cur = productDataGrid.CurrentItem as Product;
-            Product product = ProductService.GetProduct(cur.Id);
-            //EditProductForm editProduct = new EditProductForm(product);
-            //editProduct.Show();
+            ProductViewModel cur = productDataGrid.CurrentItem as ProductViewModel;
+            ProductViewModel product = Mapper.Map<ProductViewModel>(ProductService.GetProduct(cur.Id));
+            EditProductForm editProduct = new EditProductForm(product);
+            editProduct.Show();
         }
 
         private void DeleteProductButton_Click(object sender, RoutedEventArgs e)

@@ -35,8 +35,9 @@
                         <Button Content="Добавить новый продукт" Padding="3" Margin="5,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="auto" Height="25" Grid.Row="0" Grid.ColumnSpan="2" Click="AddProductButton_Click" />
                         <DataGrid x:Name="productDataGrid" Margin="5,40,5,5" Grid.ColumnSpan="2" ItemsSource="{Binding}" Grid.RowSpan="2" IsSynchronizedWithCurrentItem="False" AutoGenerateColumns="False" IsReadOnly="True" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
                             <DataGrid.Columns>
+                                <DataGridTextColumn  Binding="{Binding Id}" Header="ID" Width="0.25*" />
                                 <DataGridTextColumn  Binding="{Binding Name}" Header="Наименование" Width="0.25*" />
-                                <DataGridTextColumn  Binding="{Binding Unit}" Header="Ед. изм." Width="0.1*" />
+                                <DataGridTextColumn  Binding="{Binding UnitName}" Header="Ед. изм." Width="0.1*" />
                                 <DataGridTextColumn Binding="{Binding Norm}" Header="Норма на человека" Width="0.225*" />
                                 <DataGridTextColumn  Binding="{Binding Price}" Header="Цена" Width="0.1*" />
                                 <DataGridTextColumn  Binding="{Binding Protein}" Header="Белки" Width="0.1*" />
