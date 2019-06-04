@@ -73,6 +73,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AutoMapperConfig.cs" />
     <Compile Include="ViewModels\ProductsViewModel.cs" />
     <Page Include="Views\AddDishesForm.xaml">
       <Generator>MSBuild:Compile</Generator>
