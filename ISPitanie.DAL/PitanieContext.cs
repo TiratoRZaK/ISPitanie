@@ -16,14 +16,14 @@ namespace DAL
 
         public virtual DbSet<DishDTO> Dishes { get; set; }
         public virtual DbSet<ProductDTO> Products { get; set; }
-        public virtual DbSet<ProductDishDTO> ProductsDishes { get; set; }
+        public virtual DbSet<ProductDishDTO> ProductDishes { get; set; }
         public virtual DbSet<UnitDTO> Units { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<DishDTO>().ToTable("Dishes");
             modelBuilder.Entity<ProductDTO>().ToTable("Products");
-            modelBuilder.Entity<ProductDishDTO>().ToTable("ProductsDishes");
+            modelBuilder.Entity<ProductDishDTO>().ToTable("ProductDishes");
             modelBuilder.Entity<UnitDTO>().ToTable("Units");
         }
     }

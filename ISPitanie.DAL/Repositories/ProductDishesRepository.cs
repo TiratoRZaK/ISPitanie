@@ -18,31 +18,31 @@ namespace DAL.Repositories
 
         public void Create(ProductDishDTO item)
         {
-            db.ProductsDishes.Add(item);
+            db.ProductDishes.Add(item);
         }
 
         public void Delete(int id)
         {
-            ProductDishDTO productsDish = db.ProductsDishes.Find(id);
+            ProductDishDTO productsDish = db.ProductDishes.Find(id);
             if (productsDish != null)
             {
-                db.ProductsDishes.Remove(productsDish);
+                db.ProductDishes.Remove(productsDish);
             }
         }
 
         public IEnumerable<ProductDishDTO> Find(Func<ProductDishDTO, bool> predicate)
         {
-            return db.ProductsDishes.Where(predicate).ToList();
+            return db.ProductDishes.Where(predicate).ToList();
         }
 
         public ProductDishDTO Get(int id)
         {
-            return db.ProductsDishes.Find(id);
+            return db.ProductDishes.Find(id);
         }
 
         public IEnumerable<ProductDishDTO> GetAll()
         {
-            return db.ProductsDishes;
+            return db.ProductDishes;
         }
 
         public void Update(ProductDishDTO item)
