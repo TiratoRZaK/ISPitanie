@@ -16,7 +16,8 @@ namespace ISPitanie
         {
             cfg.CreateMap<DishDTO, Dish>();
             cfg.CreateMap<ProductDTO, Product>()
-                .ForMember(x => x.UnitName, opt => opt.MapFrom(c => c.Unit.Name));
+                .ForMember(x => x.UnitName, opt => opt.MapFrom(c => c.Unit.Name))
+                .ForMember(x => x.TypeName, opt => opt.MapFrom(c => c.Type.Name));
             cfg.CreateMap<ProductDishDTO, ProductDish>();
             cfg.CreateMap<UnitDTO, Unit>();
 

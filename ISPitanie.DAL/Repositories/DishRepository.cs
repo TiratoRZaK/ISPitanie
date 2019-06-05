@@ -16,11 +16,6 @@ namespace DAL.Repositories
             db = context;
         }
 
-        public bool IsCount(DishDTO dish)
-        {
-            return dish.Price > 100;
-        }
-
         public void Create(DishDTO item)
         {
             db.Dishes.Add(item);

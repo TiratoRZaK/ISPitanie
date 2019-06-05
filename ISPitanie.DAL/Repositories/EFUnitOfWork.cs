@@ -1,6 +1,7 @@
 ﻿using System;
 using DAL.DTO;
 using DAL.Interfaces;
+using DAL.Repositories;
 
 namespace DAL.Repositories
 {
@@ -11,6 +12,7 @@ namespace DAL.Repositories
         private DishRepository dishRepository;
         private ProductDishesRepository productDishesRepository;
         private UnitRepository unitRepository;
+        private TypeRepository typeRepository;
 
         public EFUnitOfWork()
         {
@@ -43,6 +45,18 @@ namespace DAL.Repositories
                     dishRepository = new DishRepository(db);
                 }
                 return dishRepository;
+            }
+        }
+
+        public IRepository<TypeDTO> Types
+        {
+            get
+            {
+                if (typeRepository == null)
+                {
+                    typeRepository = new TypeRepository(db);
+                }
+                return typeRepository;
             }
         }
 

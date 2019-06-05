@@ -16,9 +16,10 @@ namespace ISPitanie.BLL.Entities
         public int Price { get; set; }
         public int? Vitamine_C { get; set; }
         public int? Protein { get; set; }
+        public string TypeName { get; set; }
         public int? Fat { get; set; }
         public int? Carbohydrate { get; set; }
-        public int Count { get; set; }
+        public int? Balance { get; set; }
         public virtual IEnumerable<ProductDish> ProductsDishes { get; set; }
     }
 }

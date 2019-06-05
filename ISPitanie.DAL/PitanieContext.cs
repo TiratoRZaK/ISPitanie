@@ -18,6 +18,8 @@ namespace DAL
         public virtual DbSet<ProductDTO> Products { get; set; }
         public virtual DbSet<ProductDishDTO> ProductDishes { get; set; }
         public virtual DbSet<UnitDTO> Units { get; set; }
+        public virtual DbSet<TypeDTO> Types { get; set; }
+        public virtual DbSet<InfoStatic> InfoStatics { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -25,6 +27,8 @@ namespace DAL
             modelBuilder.Entity<ProductDTO>().ToTable("Products");
             modelBuilder.Entity<ProductDishDTO>().ToTable("ProductDishes");
             modelBuilder.Entity<UnitDTO>().ToTable("Units");
+            modelBuilder.Entity<TypeDTO>().ToTable("Types");
+            modelBuilder.Entity<InfoStatic>().ToTable("InfoStatics");
         }
     }
 }

@@ -22,7 +22,7 @@ namespace ISPitanie.UnitTests
 
             Assert.Equal(product.Id, model.Id);
             Assert.Equal(product.Name, model.Name);
-            Assert.Equal(product.Count, model.Count);
+            Assert.Equal(product.Balance, model.Balance);
             Assert.Equal(product.UnitName, model.UnitName);
             Assert.Equal(product.Fat, model.Fat);
             Assert.Equal(product.Norm, model.Norm);
@@ -40,7 +40,7 @@ namespace ISPitanie.UnitTests
                 {
                     Id = 2,
                     Name = "Рис",
-                    Count = 200, 
+                    Balance = 200, 
                     UnitName = "граммы",
                     Fat = 2,
                     Norm = 1,

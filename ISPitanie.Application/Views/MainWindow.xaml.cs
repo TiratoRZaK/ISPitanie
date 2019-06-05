@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
@@ -35,7 +36,7 @@ namespace ISPitanie
         private void FetchProducts()
         {
             var products = ProductService.GetProducts().ToList();
-            List<ProductViewModel> productModels = Mapper.Map<List<Product>, List<ProductViewModel>>(products);
+            ObservableCollection<ProductViewModel> productModels = Mapper.Map<List<Product>, ObservableCollection<ProductViewModel>>(products);
             productDataGrid.ItemsSource = productModels;
         }
 
@@ -75,7 +76,7 @@ namespace ISPitanie
 
         private void DeleteProductButton_Click(object sender, RoutedEventArgs e)
         {
-            var cur = productDataGrid.CurrentItem as Product;
+            var cur = productDataGrid.CurrentItem as ProductViewModel;
             MessageBoxResult res = MessageBox.Show("Вы уверены что хотите удалить продукт " + cur.Name + " безвозвратно?", "Удаление продукта", MessageBoxButton.YesNo);
             var prod = ProductService.GetProduct(cur.Id);
             if (prod != null && res == MessageBoxResult.Yes)
@@ -87,8 +88,8 @@ namespace ISPitanie
 
         private void AddProductButton_Click(object sender, RoutedEventArgs e)
         {
-            //AddProductForm addProduct = new AddProductForm();
-            //addProduct.Show();
+            AddProductForm addProduct = new AddProductForm();
+            addProduct.Show();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

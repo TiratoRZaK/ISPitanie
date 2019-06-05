@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using AutoMapper;
 using DAL.DTO;
@@ -26,8 +27,6 @@ namespace ISPitanie.Services
             }
             // Настройка AutoMapper
             // сопоставление
-            var prodDishes = Mapper.Map<IEnumerable<ProductDish>, List<ProductDishDTO>>(GetProductDishes(product.Id));
-
             ProductDTO productDto = new ProductDTO
             {
                 Name = product.Name,
@@ -35,12 +34,14 @@ namespace ISPitanie.Services
                 Fat = product.Fat,
                 Price = product.Price,
                 Protein = product.Protein,
-                Count = product.Count,
+                Balance = product.Balance,
                 Norm = product.Norm,
+                TypeId = db.Types.GetAll().Where(x => x.Name == product.TypeName).First().Id,
                 UnitId = db.Units.GetAll().Where(x => x.Name == product.UnitName).First().Id,
                 Vitamine_C = product.Vitamine_C,
-                ProductsDishes = prodDishes,
-                Unit = db.Units.GetAll().Where(x => x.Name == product.UnitName).First()
+                ProductsDishes = new List<ProductDishDTO>(),
+                Unit = db.Units.GetAll().Where(x => x.Name == product.UnitName).First(),
+                Type = db.Types.GetAll().Where(x => x.Name == product.TypeName).First()
             };
             db.Products.Create(productDto);
             db.Save();
@@ -59,7 +60,7 @@ namespace ISPitanie.Services
             if (product == null)
                 throw new ValidationException("Подукт не найден", "");
 
-            return new Product { Id = id.Value, Name = product.Name, Norm = product.Norm, Carbohydrate = product.Carbohydrate, Fat = product.Fat, Price = product.Price, ProductsDishes = GetProductDishes(product.Id), Protein = product.Protein, Vitamine_C = product.Vitamine_C, Count = product.Count, UnitName = product.Unit.Name };
+            return new Product { Id = id.Value, Name = product.Name, Norm = product.Norm, Carbohydrate = product.Carbohydrate, Fat = product.Fat, Price = product.Price, ProductsDishes = GetProductDishes(product.Id), Protein = product.Protein, Vitamine_C = product.Vitamine_C, Balance = product.Balance, UnitName = product.Unit.Name, TypeName = product.Type.Name };
         }
 
         public IEnumerable<ProductDish> GetProductDishes(int? id)
@@ -74,11 +75,13 @@ namespace ISPitanie.Services
                 throw new ValidationException("Продукт не найден", "");
             }
 
-            var productDishes = db.ProductDishes.GetAll().Where(x => x.ProductId == id.Value);
+            var productDishes = db.ProductDishes.GetAll().Where(x => x.ProductId == id.Value).ToList();
             // Настройка AutoMapper
             // сопоставление
-            return Mapper.Map<IEnumerable<ProductDishDTO>, List<ProductDish>>(productDishes);
+            ObservableCollection<ProductDish> collection = Mapper.Map<IEnumerable<ProductDishDTO>, ObservableCollection<ProductDish>>(productDishes);
+            return collection;
         }
+
 
         public IEnumerable<Product> GetProducts()
         {
@@ -97,6 +100,34 @@ namespace ISPitanie.Services
             {
                 db.ProductDishes.Delete(item.Id);
             }
+            db.Products.Delete(product.Id);
+            db.Save();
+        }
+
+        public void UpdateProduct(Product product)
+        {
+            if (product == null)
+            {
+                throw new ValidationException("Некорректный продукт", "");
+            }
+            // Настройка AutoMapper
+            // сопоставление
+            ProductDTO productDto = db.Products.Get(product.Id);
+
+            productDto.Name = product.Name;
+            productDto.Carbohydrate = product.Carbohydrate;
+            productDto.Fat = product.Fat;
+            productDto.Price = product.Price;
+            productDto.Protein = product.Protein;
+            productDto.Balance = product.Balance;
+            productDto.Norm = product.Norm;
+            productDto.UnitId = db.Units.GetAll().Where(x => x.Name == product.UnitName).First().Id;
+            productDto.TypeId = db.Types.GetAll().Where(x => x.Name == product.TypeName).First().Id;
+            productDto.Vitamine_C = product.Vitamine_C;
+            productDto.ProductsDishes = db.Products.Get(product.Id).ProductsDishes;
+            productDto.Unit = db.Units.GetAll().Where(x => x.Name == product.UnitName).First();
+            productDto.Type = db.Types.GetAll().Where(x => x.Name == product.TypeName).First();
+
             db.Save();
         }
     }

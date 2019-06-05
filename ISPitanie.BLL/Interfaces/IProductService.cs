@@ -15,6 +15,8 @@ namespace ISPitanie.Interfaces
 
         void RemoveProduct(Product product);                      //Удалить продукт из БД
 
+        void UpdateProduct(Product product);                        //Обновить продукт
+
         void Dispose();
     }
 }
