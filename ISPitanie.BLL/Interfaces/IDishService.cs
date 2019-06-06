@@ -5,6 +5,8 @@ namespace ISPitanie.Interfaces
 {
     public interface IDishService
     {
+
+        void CreateDish(Dish dish);                                 //Создать новое блюдо
         void AddProduct(Dish dish, Product product, int norm);      //Добавить продукт в блюдо
 
         IEnumerable<Product> GetProducts(int? id);                           //Вернуть все продукты из состава блюда

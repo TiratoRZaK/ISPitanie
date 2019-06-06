@@ -9,7 +9,7 @@ namespace DAL.Repositories
 {
     public class DishRepository : IRepository<DishDTO>
     {
-        private PitanieContext db;
+        public PitanieContext db;
 
         public DishRepository(PitanieContext context)
         {
@@ -19,6 +19,7 @@ namespace DAL.Repositories
         public void Create(DishDTO item)
         {
             db.Dishes.Add(item);
+            db.ProductDishes.AddRange(item.ProductsDishes);
         }
 
         public void Delete(int id)

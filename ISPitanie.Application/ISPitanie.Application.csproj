@@ -74,7 +74,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AutoMapperConfig.cs" />
+    <Compile Include="ViewModels\DishesViewModel.cs" />
+    <Compile Include="ViewModels\ProductDishesViewModel.cs" />
+    <Compile Include="ViewModels\ProductInDish.cs" />
     <Compile Include="ViewModels\ProductsViewModel.cs" />
+    <Compile Include="Views\SetNormWindow.xaml.cs">
+      <DependentUpon>SetNormWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\AddDishesForm.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -115,6 +121,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\SetNormWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

@@ -11,11 +11,32 @@ namespace ISPitanie.Services
 {
     public class DishService : IDishService
     {
-        private IUnitOfWork db { get; set; }
+        private IUnitOfWork Db { get; set; }
 
         public DishService(IUnitOfWork db)
         {
-            this.db = db;
+            this.Db = db;
+        }
+
+        public void CreateDish(Dish dish)
+        {
+            if (dish == null)
+            {
+                throw new ValidationException("Некорректный продукт", "");
+            }
+
+            DishDTO dishDto = new DishDTO
+            {
+                Name = dish.Name,
+                Carbohydrate = dish.Carbohydrate,
+                Fat = dish.Fat,
+                Protein = dish.Protein,
+                Norm = dish.Norm,
+                Vitamine_C = dish.Vitamine_C,
+                ProductsDishes = Mapper.Map<List<ProductDishDTO>>(dish.ProductsDishes.ToList())
+            };
+            Db.Dishes.Create(dishDto);
+            Db.Save();
         }
 
         public void AddProduct(Dish dish, Product product, int norm)
@@ -33,7 +54,6 @@ namespace ISPitanie.Services
                 throw new ValidationException("Переданна некорректная норма", "");
             }
 
-            DishDTO dishDTO = db.Dishes.Get(dish.Id);
             ProductDishDTO productDish = new ProductDishDTO
             {
                 DishId = dish.Id,
@@ -41,8 +61,8 @@ namespace ISPitanie.Services
                 Norm = norm
             };
 
-            db.ProductDishes.Create(productDish);
-            db.Save();
+            Db.ProductDishes.Create(productDish);
+            Db.Save();
         }
 
         public IEnumerable<Product> GetProducts(int? id)
@@ -52,7 +72,7 @@ namespace ISPitanie.Services
                 throw new ValidationException("Не установлено id блюда", "");
             }
 
-            var dish = db.Dishes.Get(id.Value);
+            var dish = Db.Dishes.Get(id.Value);
             if (dish == null)
             {
                 throw new ValidationException("Блюдо не найдено", "");
@@ -63,7 +83,7 @@ namespace ISPitanie.Services
             {
                 if (item.Dish.Id == id.Value)
                 {
-                    products.ToList().Add(db.Products.Get(item.Product.Id));
+                    products.ToList().Add(Db.Products.Get(item.Product.Id));
                 }
             }
             return Mapper.Map<IEnumerable<ProductDTO>, List<Product>>(products);
@@ -71,7 +91,7 @@ namespace ISPitanie.Services
 
         public IEnumerable<Dish> GetDishes()
         {
-            return Mapper.Map<IEnumerable<DishDTO>, List<Dish>>(db.Dishes.GetAll());
+            return Mapper.Map<IEnumerable<DishDTO>, List<Dish>>(Db.Dishes.GetAll());
         }
 
         public void RemoveProduct(Dish dish, Product product)
@@ -85,14 +105,14 @@ namespace ISPitanie.Services
                 throw new ValidationException("Данного продукта не существует", "");
             }
 
-            var productDish = db.ProductDishes.GetAll().Where(x => x.ProductId == product.Id && x.DishId == dish.Id).FirstOrDefault();
-            db.ProductDishes.Delete(productDish.Id);
-            db.Save();
+            var productDish = Db.ProductDishes.GetAll().Where(x => x.ProductId == product.Id && x.DishId == dish.Id).FirstOrDefault();
+            Db.ProductDishes.Delete(productDish.Id);
+            Db.Save();
         }
 
         public void Dispose()
         {
-            db.Dispose();
+            Db.Dispose();
         }
 
         public Dish GetDish(int? id)
@@ -102,13 +122,13 @@ namespace ISPitanie.Services
                 throw new ValidationException("Не установлено id блюда", "");
             }
 
-            var dish = db.Dishes.Get(id.Value);
+            var dish = Db.Dishes.Get(id.Value);
             if (dish == null)
             {
                 throw new ValidationException("Блюдо не найдено", "");
             }
 
-            return new Dish { Id = id.Value, Name = dish.Name, Norm = dish.Norm, Carbohydrate = dish.Carbohydrate, Fat = dish.Fat, Price = dish.Price, ProductsDishes = GetProductDishes(dish.Id), Protein = dish.Protein, Vitamine_C = dish.Vitamine_C };
+            return new Dish { Id = id.Value, Name = dish.Name, Norm = dish.Norm, Carbohydrate = dish.Carbohydrate, Fat = dish.Fat, ProductsDishes = GetProductDishes(dish.Id), Protein = dish.Protein, Vitamine_C = dish.Vitamine_C };
         }
 
         public IEnumerable<ProductDish> GetProductDishes(int? id)
@@ -118,13 +138,13 @@ namespace ISPitanie.Services
                 throw new ValidationException("Передано несуществующее блюдо", "");
             }
 
-            var dish = db.Dishes.Get(id.Value);
+            var dish = Db.Dishes.Get(id.Value);
             if (dish == null)
             {
                 throw new ValidationException("Блюдо не найдено", "");
             }
 
-            var productDishes = db.ProductDishes.GetAll().Where(x => x.DishId == id.Value);
+            var productDishes = Db.ProductDishes.GetAll().Where(x => x.DishId == id.Value).ToList();
             return Mapper.Map<IEnumerable<ProductDishDTO>, List<ProductDish>>(productDishes);
         }
 
@@ -135,8 +155,8 @@ namespace ISPitanie.Services
                 throw new ValidationException("Блюдо не найдено", "");
             }
 
-            db.Dishes.Delete(dish.Id);
-            db.Save();
+            Db.Dishes.Delete(dish.Id);
+            Db.Save();
         }
     }
 }

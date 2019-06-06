@@ -21,5 +21,10 @@ namespace ISPitanie.BLL.Entities
         public int? Carbohydrate { get; set; }
         public int? Balance { get; set; }
         public virtual IEnumerable<ProductDish> ProductsDishes { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

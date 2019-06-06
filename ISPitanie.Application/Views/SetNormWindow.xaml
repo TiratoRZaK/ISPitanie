@@ -1,0 +1,27 @@
+﻿<Window x:Class="ISPitanie.Views.SetNormWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ISPitanie.Views"
+        mc:Ignorable="d" Height="130" Width="360"
+        Title="Задайте норму продукта" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2">Введите значение нормы:</TextBlock>
+        <TextBox Name="normBox" Grid.Row="1" Grid.ColumnSpan="2">0</TextBox>
+        <WrapPanel Grid.Row="2" HorizontalAlignment="Center" Margin="50,10,50,20" Grid.ColumnSpan="2">
+            <Button IsDefault="True" Click="Accept_Click" MinWidth="60">OK</Button>
+            <Button IsCancel="True" MinWidth="60" Margin="100,0,0,0">Отмена</Button>
+        </WrapPanel>
+    </Grid>
+</Window>

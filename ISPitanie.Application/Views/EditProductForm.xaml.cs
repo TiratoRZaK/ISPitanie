@@ -22,8 +22,6 @@ namespace ISPitanie.Views
 
         public EditProductForm(ProductViewModel product)
         {
-            //ProductViewModel productView = new ProductViewModel(product.Id); // prod.Id
-
             Product = product;
             this.DataContext = Product;
 

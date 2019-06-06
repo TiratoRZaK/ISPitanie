@@ -59,7 +59,7 @@
                     </Grid>
                 </TabItem>
                 <TabItem Header="Блюда">
-                    <!--<Grid DataContext="{StaticResource dishProductsDishesViewSource}">
+                    <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
@@ -68,21 +68,13 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Button Content="Добавить новое блюдо" Padding="3" Margin="5,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="auto" Height="25" Grid.Row="0" Grid.ColumnSpan="2" Click="Button_Click" />
+                        <Button Content="Добавить новое блюдо" Padding="3" Margin="5,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="auto" Height="25" Grid.Row="0" Grid.ColumnSpan="2" Click="AddDishButton_Click" />
                         <DataGrid x:Name="dishesDataGrid" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="5,40,5,5" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.ColumnSpan="2" Grid.RowSpan="2" IsSynchronizedWithCurrentItem="False" AutoGenerateColumns="False" IsReadOnly="True" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
                             <DataGrid.Columns>
                                 <DataGridTextColumn x:Name="nameDishes" Binding="{Binding Name}" Header="Наименование" Width="0.25*" />
                                 <DataGridTextColumn x:Name="normDishes" Binding="{Binding Norm}" Header="Норма на человека" Width="0.225*" />
                                 <DataGridTextColumn x:Name="priceDishes" Binding="{Binding Price}" Header="Цена" Width="0.1*" />
-                                <DataGridTemplateColumn x:Name="listProductDishes" Header="Список продуктов" Width="0.25*">
-                                    <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <Button HorizontalAlignment="Left" Click="ShowHideDetails" CommandParameter="{Binding Id}" >Изменить</Button>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </DataGridTemplateColumn.CellTemplate>
-                                </DataGridTemplateColumn>
+                                <DataGridTextColumn x:Name="listProductDishes" Binding="{Binding Products}" Header="Список продуктов" Width="0.1*" />
                                 <DataGridTemplateColumn Header="Функции" Width="170">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
@@ -95,7 +87,7 @@
                                 </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-                    </Grid>-->
+                    </Grid>
                 </TabItem>
                 <TabItem Header="Меню">
                     <Grid Background="#FFE5E5E5" />

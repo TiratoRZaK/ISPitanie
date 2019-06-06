@@ -11,6 +11,7 @@ using ISPitanie.BLL.Entities;
 using ISPitanie.Interfaces;
 using ISPitanie.Models;
 using ISPitanie.Services;
+using ISPitanie.ViewModels;
 using ISPitanie.Views;
 
 namespace ISPitanie
@@ -24,17 +25,22 @@ namespace ISPitanie
         public MainWindow()
         {
             ProductService = new ProductService(unitOfWork);
-            //DishService = new DishService(unitOfWork);
+            DishService = new DishService(unitOfWork);
             InitializeComponent();
-            FetchProducts();
-            //var dishModels = Mapper.Map<IEnumerable<DishViewModel>>(DishService.GetDishes());
-            //dishesDataGrid.ItemsSource = dishModels.ToList();
-
+            FetchData();
+            
             this.Closing += MainWindow_Closing;
         }
 
-        private void FetchProducts()
+        private void FetchData()
         {
+            ObservableCollection<DishesViewModel> dishes = new ObservableCollection<DishesViewModel>();
+            foreach(Dish item in DishService.GetDishes())
+            {
+                dishes.Add(new DishesViewModel(item.Id));
+            }
+            dishesDataGrid.ItemsSource = dishes;
+
             var products = ProductService.GetProducts().ToList();
             ObservableCollection<ProductViewModel> productModels = Mapper.Map<List<Product>, ObservableCollection<ProductViewModel>>(products);
             productDataGrid.ItemsSource = productModels;
@@ -51,21 +57,6 @@ namespace ISPitanie
             ProductService.Dispose();
         }
 
-        private void ShowHideDetails(object sender, RoutedEventArgs e)
-        {
-            //int id = (int)(sender as Button).CommandParameter;
-            //var list = db.ProductDishes.GetAll().Where(x => x.DishId == id);
-            //List<Product> listProduct = new List<Product>();
-            //String str = " ";
-            //foreach (var item in list)
-            //{
-            //    listProduct.Add(item.Product);
-            //    str += item.Product.Name+" ";
-            //}
-            //(sender as Button).Content = str;
-            //(sender as Button).IsEnabled = false;
-        }
-
         private void EditProduct(object sender, RoutedEventArgs e)
         {
             ProductViewModel cur = productDataGrid.CurrentItem as ProductViewModel;
@@ -73,7 +64,11 @@ namespace ISPitanie
             EditProductForm editProduct = new EditProductForm(product);
             editProduct.Show();
         }
-
+        private void AddDishButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddDishesForm addDish = new AddDishesForm();
+            addDish.Show();
+        }
         private void DeleteProductButton_Click(object sender, RoutedEventArgs e)
         {
             var cur = productDataGrid.CurrentItem as ProductViewModel;
@@ -95,27 +90,27 @@ namespace ISPitanie
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             productDataGrid.Items.Refresh();
+            dishesDataGrid.Items.Refresh();
         }
 
         private void EditDishes(object sender, RoutedEventArgs e)
         {
-            //DishDTO cur = dishesDataGrid.CurrentItem as DishDTO;
-            //DishDTO dish = dishService.GetDish(cur.Id);
-            //EditDishesForm editDishes = new EditDishesForm(dish);
-            //editDishes.Show();
+            DishesViewModel cur = dishesDataGrid.CurrentItem as DishesViewModel;
+            DishesViewModel dish = Mapper.Map<DishesViewModel>(DishService.GetDish(cur.Id));
+            EditDishesForm editDish = new EditDishesForm(dish);
+            editDish.Show();
         }
 
         private void DeleteDishes(object sender, RoutedEventArgs e)
         {
-            //var cur = dishesDataGrid.CurrentItem as DishDTO;
-            //MessageBoxResult res = MessageBox.Show("Вы уверены что хотите удалить блюдо " + cur.Name + " безвозвратно?", "Удаление блюда", MessageBoxButton.YesNo);
-            //var dish = dishService.GetDish(cur.Id);
-
-            //if (dish != null && res == MessageBoxResult.Yes)
-            //{
-            //    dishService.RemoveDish(dish);
-            //}
-            //dishesDataGrid.Items.Refresh();
+            var cur = dishesDataGrid.CurrentItem as DishesViewModel;
+            MessageBoxResult res = MessageBox.Show("Вы уверены что хотите удалить блюдо " + cur.Name + " безвозвратно?", "Удаление блюда", MessageBoxButton.YesNo);
+            var dish = DishService.GetDish(cur.Id);
+            if (dish != null && res == MessageBoxResult.Yes)
+            {
+                DishService.RemoveDish(dish);
+            }
+            dishesDataGrid.Items.Refresh();
         }
     }
 }

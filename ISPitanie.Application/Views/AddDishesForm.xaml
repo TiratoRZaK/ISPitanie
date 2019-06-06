@@ -3,9 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ISPitanie.Views"
         mc:Ignorable="d"
-        Title="Добавление нового блюда" Height="384" Width="478.3" Loaded="Window_Loaded" VerticalContentAlignment="Center" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Добавление нового блюда" Height="484.545" Width="474.433" Loaded="Window_Loaded" VerticalContentAlignment="Center" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <Style TargetType="TextBox">
@@ -27,96 +26,105 @@
             </StackPanel>
         </ControlTemplate>
     </Window.Resources>
+    <DockPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Grid x:Name="gridFormDishes" DockPanel.Dock="Top" VerticalAlignment="Top" Margin="5,5,5,5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" MinWidth="231"/>
+                <ColumnDefinition Width="Auto" MinWidth="232"/>
+            </Grid.ColumnDefinitions>
 
-    <Grid x:Name="gridFormDishes" VerticalAlignment="Top" Margin="8,5,8,0" HorizontalAlignment="Center" RenderTransformOrigin="0.413,0.487" Height="357">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="60"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" MinWidth="231"/>
-            <ColumnDefinition Width="Auto" MinWidth="232"/>
-        </Grid.ColumnDefinitions>
+            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3,4,0,9" HorizontalAlignment="Left" Grid.Column="0" Content="Наименование:" Height="26" Width="96"/>
+            <TextBox x:Name="nameTextBox" Width="201" VerticalAlignment="Center" Grid.Row="0" Margin="3,6,0,9" Height="24" HorizontalAlignment="Left" Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationFailed}">
+                <TextBox.Text>
+                    <Binding Path="Name" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule  />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Label VerticalAlignment="Center" Grid.Row="1" Margin="3,5,0,6" HorizontalAlignment="Left" Grid.Column="0" Content="Норма на человека:" Height="26" Width="120"/>
+            <TextBox x:Name="normTextBox" Width="201" VerticalAlignment="Center" Grid.Row="1" Margin="3,5,0,8" Height="24" HorizontalAlignment="Left" Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationFailed}">
+                <TextBox.Text>
+                    <Binding Path="Norm" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule  />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Label VerticalAlignment="Center" Grid.Row="2" Margin="3,5,0,6" HorizontalAlignment="Left" Grid.Column="0" Content="Углеводы:" Height="26" Width="65"/>
+            <TextBox x:Name="carbohydrateTextBox" Width="201" VerticalAlignment="Center" Grid.Row="2" Margin="3,5,0,8" Height="24" HorizontalAlignment="Left" Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationFailed}">
+                <TextBox.Text>
+                    <Binding Path="Carbohydrate" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule  />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Label VerticalAlignment="Center" Grid.Row="3" Margin="3,6,0,5" HorizontalAlignment="Left" Grid.Column="0" Content="Жиры:" Height="26" Width="46"/>
+            <TextBox x:Name="fatTextBox" Width="201" VerticalAlignment="Center" Grid.Row="3" Margin="3,8,0,5" Height="24" HorizontalAlignment="Left" Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationFailed}">
+                <TextBox.Text>
+                    <Binding Path="Fat" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule  />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Label VerticalAlignment="Center" Grid.Row="4" Margin="3,5,0,6" HorizontalAlignment="Left" Grid.Column="0" Content="Белки:" Height="26" Width="45"/>
+            <TextBox x:Name="proteinTextBox" Width="201" VerticalAlignment="Center" Grid.Row="4" Margin="3,5,0,8" Height="24" HorizontalAlignment="Left" Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationFailed}">
+                <TextBox.Text>
+                    <Binding Path="Protein" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule  />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Label VerticalAlignment="Center" Grid.Row="5" Margin="3,6,0,5" HorizontalAlignment="Left" Grid.Column="0" Content="Витамин C:" Height="26" Width="71"/>
+            <TextBox x:Name="vitamine_CTextBox" Width="201" VerticalAlignment="Center" Grid.Row="5" Margin="3,6,0,7" Height="24" HorizontalAlignment="Left" Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationFailed}">
+                <TextBox.Text>
+                    <Binding Path="Vitamine_C" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule  />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <Label Grid.Row="6" Grid.Column="0">Выберите продукты из списка:</Label>
+            <Label Grid.Row="6" Grid.Column="1" Margin="20,0,0,0">Состав блюда:</Label>
+            <StackPanel Orientation="Horizontal" Grid.Row="8" Grid.ColumnSpan="2" HorizontalAlignment="Stretch">
+                <ListBox x:Name="listProducts" Height="120" Width="200">
+                     
+                </ListBox>
+                <StackPanel Height="120" Orientation="Vertical">
+                    <Button x:Name="AddButton" Margin="20,30,20,0" Content="+" Click="AddButton_Click"/>
+                    <Button x:Name="RemoveButton" Margin="20,20,20,0" Content="-" Click="RemoveButton_Click">
 
-        <Label VerticalAlignment="Center" Grid.Row="0" Margin="3,4,0,9" HorizontalAlignment="Left" Grid.Column="0" Content="Наименование:" Height="26" Width="96"/>
-        <TextBox x:Name="nameTextBox" Width="201" VerticalAlignment="Center" Grid.Row="0" Margin="3,6,0,9" Height="24" HorizontalAlignment="Left" Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationFailed}">
-            <TextBox.Text>
-                <Binding Path="Name" NotifyOnValidationError="True">
-                    <Binding.ValidationRules>
-                        <DataErrorValidationRule  />
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <Label VerticalAlignment="Center" Grid.Row="1" Margin="3,5,0,6" HorizontalAlignment="Left" Grid.Column="0" Content="Норма на человека:" Height="26" Width="120"/>
-        <TextBox x:Name="normTextBox" Width="201" VerticalAlignment="Center" Grid.Row="1" Margin="3,5,0,8" Height="24" HorizontalAlignment="Left" Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationFailed}">
-            <TextBox.Text>
-                <Binding Path="Norm" NotifyOnValidationError="True">
-                    <Binding.ValidationRules>
-                        <DataErrorValidationRule  />
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <Label VerticalAlignment="Center" Grid.Row="2" Margin="3,6,0,5" HorizontalAlignment="Left" Grid.Column="0" Content="Цена:" Height="26" Width="41"/>
-        <TextBox x:Name="priceTextBox" Width="201" VerticalAlignment="Center" Grid.Row="2" Margin="3,8,0,5" Height="24" HorizontalAlignment="Left" Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationFailed}">
-            <TextBox.Text>
-                <Binding Path="Price" NotifyOnValidationError="True">
-                    <Binding.ValidationRules>
-                        <DataErrorValidationRule  />
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <Label VerticalAlignment="Center" Grid.Row="3" Margin="3,5,0,6" HorizontalAlignment="Left" Grid.Column="0" Content="Углеводы:" Height="26" Width="65"/>
-        <TextBox x:Name="carbohydrateTextBox" Width="201" VerticalAlignment="Center" Grid.Row="3" Margin="3,5,0,8" Height="24" HorizontalAlignment="Left" Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationFailed}">
-            <TextBox.Text>
-                <Binding Path="Carbohydrate" NotifyOnValidationError="True">
-                    <Binding.ValidationRules>
-                        <DataErrorValidationRule  />
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <Label VerticalAlignment="Center" Grid.Row="4" Margin="3,6,0,5" HorizontalAlignment="Left" Grid.Column="0" Content="Жиры:" Height="26" Width="46"/>
-        <TextBox x:Name="fatTextBox" Width="201" VerticalAlignment="Center" Grid.Row="4" Margin="3,8,0,5" Height="24" HorizontalAlignment="Left" Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationFailed}">
-            <TextBox.Text>
-                <Binding Path="Fat" NotifyOnValidationError="True">
-                    <Binding.ValidationRules>
-                        <DataErrorValidationRule  />
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <Label VerticalAlignment="Center" Grid.Row="5" Margin="3,5,0,6" HorizontalAlignment="Left" Grid.Column="0" Content="Белки:" Height="26" Width="45"/>
-        <TextBox x:Name="proteinTextBox" Width="201" VerticalAlignment="Center" Grid.Row="5" Margin="3,5,0,8" Height="24" HorizontalAlignment="Left" Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationFailed}">
-            <TextBox.Text>
-                <Binding Path="Protein" NotifyOnValidationError="True">
-                    <Binding.ValidationRules>
-                        <DataErrorValidationRule  />
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <Label VerticalAlignment="Center" Grid.Row="6" Margin="3,6,0,5" HorizontalAlignment="Left" Grid.Column="0" Content="Витамин C:" Height="26" Width="71"/>
-        <TextBox x:Name="vitamine_CTextBox" Width="201" VerticalAlignment="Center" Grid.Row="6" Margin="3,6,0,7" Height="24" HorizontalAlignment="Left" Grid.Column="1" Validation.ErrorTemplate="{StaticResource validationFailed}">
-            <TextBox.Text>
-                <Binding Path="Vitamine_C" NotifyOnValidationError="True">
-                    <Binding.ValidationRules>
-                        <DataErrorValidationRule  />
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <Button Grid.Row="8" Grid.Column="0" Content="Добавить" Click="Button_Click_OK" VerticalAlignment="Bottom" Height="20" Margin="80,0,81,0" />
-        <Button Grid.Row="8" Grid.Column="1" Content="Отмена" Click="Button_Click_Cancel" VerticalAlignment="Bottom" Height="20" Margin="71,0" />
-    </Grid>
+                    </Button>
+                </StackPanel>
+                <ListBox x:Name="listProductInDishes" Height="120" Width="200">
 
+                </ListBox>
+            </StackPanel>
+        </Grid>
+        
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Height="30">
+            <Button Content="Добавить" Click="Button_Click_OK" VerticalAlignment="Bottom" Height="30" Width="80"/>
+            <Button Content="Отмена" Click="Button_Click_Cancel" VerticalAlignment="Bottom" Height="30" Width="80" Margin="100,0,0,0"/>
+        </StackPanel>
+    </DockPanel>
 </Window>
     

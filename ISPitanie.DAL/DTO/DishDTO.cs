@@ -12,7 +12,6 @@ namespace DAL.DTO
         public int Id { get; set; }
         public string Name { get; set; }
         public int Norm { get; set; }       //Норма на человека в день (не используется)
-        public int Price { get; set; }
         public int? Vitamine_C { get; set; }
         public int? Fat { get; set; }
         public int? Protein { get; set; }

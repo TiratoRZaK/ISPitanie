@@ -1,5 +1,9 @@
 ﻿using System.Windows;
+using DAL.Repositories;
 using ISPitanie.BLL.Entities;
+using ISPitanie.Interfaces;
+using ISPitanie.Services;
+using ISPitanie.ViewModels;
 
 namespace ISPitanie.Views
 {
@@ -8,11 +12,12 @@ namespace ISPitanie.Views
     /// </summary>
     public partial class EditDishesForm : Window
     {
-        private Dish dish;
-
-        public EditDishesForm(Dish dish)
+        private DishesViewModel Dish;
+        private IDishService DishService = new DishService(new EFUnitOfWork());
+        
+        public EditDishesForm(DishesViewModel dish)
         {
-            this.dish = dish;
+            Dish = dish;
             DataContext = dish;
             InitializeComponent();
         }
@@ -36,8 +41,7 @@ namespace ISPitanie.Views
             //if (vitamine_CTextBox.Text == "") dish.Vitamine_C = null;
             //else dish.Vitamine_C = int.Parse(vitamine_CTextBox.Text);
 
-            //db.SaveChanges();
-            //this.Close();
+            this.Close();
         }
 
         private void Button_Click_Cancel(object sender, RoutedEventArgs e)

@@ -68,6 +68,10 @@
     <Compile Include="Migrations\201906051956232_addType.Designer.cs">
       <DependentUpon>201906051956232_addType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906061739381_FixDishesDTO.cs" />
+    <Compile Include="Migrations\201906061739381_FixDishesDTO.Designer.cs">
+      <DependentUpon>201906061739381_FixDishesDTO.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PitanieContext.cs" />
@@ -91,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906051956232_addType.resx">
       <DependentUpon>201906051956232_addType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906061739381_FixDishesDTO.resx">
+      <DependentUpon>201906061739381_FixDishesDTO.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
