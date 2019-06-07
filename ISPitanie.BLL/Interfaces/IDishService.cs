@@ -16,6 +16,7 @@ namespace ISPitanie.Interfaces
         IEnumerable<Dish> GetDishes();                                       //Вернуть все блюда из БД
 
         Dish GetDish(int? id);                                               //Вернуть блюдо по ID
+        void UpdateDish(Dish dish);                                         //Обновить блюдо в БД
 
         void RemoveProduct(Dish dish, Product product);             //Удалить продукт из блюда
 

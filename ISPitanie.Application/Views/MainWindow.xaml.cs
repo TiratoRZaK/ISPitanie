@@ -97,8 +97,7 @@ namespace ISPitanie
         private void EditDishes(object sender, RoutedEventArgs e)
         {
             DishesViewModel cur = dishesDataGrid.CurrentItem as DishesViewModel;
-            DishesViewModel dish = Mapper.Map<DishesViewModel>(DishService.GetDish(cur.Id));
-            EditDishesForm editDish = new EditDishesForm(dish);
+            EditDishesForm editDish = new EditDishesForm(DishService.GetDish(cur.Id));
             editDish.Show();
         }
 

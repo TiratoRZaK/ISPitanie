@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using DAL.DTO;
+using DAL.Interfaces;
+using DAL.Repositories;
 using ISPitanie.BLL.Entities;
 using ISPitanie.Models;
 using ISPitanie.ViewModels;
@@ -15,6 +17,8 @@ namespace ISPitanie
 
         private static void AddMappings(IMapperConfigurationExpression cfg)
         {
+            IUnitOfWork unitOfWork = new EFUnitOfWork();
+
             cfg.CreateMap<DishDTO, Dish>();
 
             cfg.CreateMap<Dish, DishesViewModel>()

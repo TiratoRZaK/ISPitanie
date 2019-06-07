@@ -18,6 +18,38 @@ namespace ISPitanie.Services
             this.Db = db;
         }
 
+        public void UpdateDish(Dish dish)
+        {
+            if (dish == null)
+            {
+                throw new ValidationException("Некорректный продукт", "");
+            }
+
+            DishDTO dishDto = Db.Dishes.Get(dish.Id);
+
+            dishDto.Name = dish.Name;
+            dishDto.Carbohydrate = dish.Carbohydrate;
+            dishDto.Fat = dish.Fat;
+            dishDto.Protein = dish.Protein;
+            dishDto.Norm = dish.Norm;
+            dishDto.Vitamine_C = dish.Vitamine_C;
+            foreach(ProductDish item in dish.ProductsDishes)
+            {
+                Db.ProductDishes.Clear(item.Id);
+                Db.ProductDishes.Create(new ProductDishDTO
+                {
+                    Dish = Db.Dishes.Get(item.Dish.Id),
+                    Product = Db.Products.Get(item.Product.Id),
+                    DishId = item.Dish.Id,
+                    ProductId = item.Product.Id,
+                    Norm = item.Norm
+                });
+            }
+            
+            Db.Dishes.Update(dishDto);
+            Db.Save();
+        }
+
         public void CreateDish(Dish dish)
         {
             if (dish == null)
