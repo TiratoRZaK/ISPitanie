@@ -2,17 +2,17 @@
 using ISPitanie.BLL.Entities;
 using ISPitanie.Interfaces;
 using ISPitanie.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ISPitanie.ViewModels
 {
     public class DishesViewModel
     {
         public IDishService dishService = new DishService(new EFUnitOfWork());
+
+        public DishesViewModel()
+        {
+        }
+
         public DishesViewModel(int idDish)
         {
             Dish dish = dishService.GetDish(idDish);
@@ -23,8 +23,8 @@ namespace ISPitanie.ViewModels
             Fat = dish.Fat;
             Protein = dish.Protein;
             Carbohydrate = dish.Carbohydrate;
-            ProductDishes = ProductDishesViewModel.GetProductDishesViewModel(idDish);
-            Products = ProductDishes.ToString();
+            ProductsDishes = ProductDishesViewModel.GetProductDishesViewModel(idDish);
+            Products = ProductsDishes.ToString();
         }
 
         public int Id { get; set; }
@@ -34,7 +34,7 @@ namespace ISPitanie.ViewModels
         public int? Fat { get; set; }
         public int? Protein { get; set; }
         public int? Carbohydrate { get; set; }
-        public ProductDishesViewModel ProductDishes { get; set; }
+        public ProductDishesViewModel ProductsDishes { get; set; }
         public string Products { get; set; }
     }
 }

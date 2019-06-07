@@ -2,6 +2,7 @@
 using DAL.DTO;
 using ISPitanie.BLL.Entities;
 using ISPitanie.Models;
+using ISPitanie.ViewModels;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
@@ -41,6 +42,46 @@ namespace ISPitanie.UnitTests
             Assert.Equal(product.Protein, model.Protein);
             Assert.Equal(product.Vitamine_C, model.Vitamine_C);
             Assert.Equal(product.Carbohydrate, model.Carbohydrate);
+        }
+
+        [Theory]
+        [MemberData("GetDishes")]
+        public void DishModel_MappingTest(Dish dish)
+        {
+            var model = Mapper.Map<Dish, DishesViewModel>(dish);
+
+            Assert.Equal(dish.Id, model.Id);
+            Assert.Equal(dish.Name, model.Name);
+            Assert.Equal(dish.Fat, model.Fat);
+            Assert.Equal(dish.Norm, model.Norm);
+            Assert.Equal(dish.Protein, model.Protein);
+            Assert.Equal(dish.Vitamine_C, model.Vitamine_C);
+            Assert.Equal(dish.Carbohydrate, model.Carbohydrate);
+
+            var entity = Mapper.Map<DishesViewModel, Dish>(model);
+
+            Assert.Equal(dish.Id, entity.Id);
+            Assert.Equal(dish.Name, entity.Name);
+            Assert.Equal(dish.Fat, entity.Fat);
+            Assert.Equal(dish.Norm, entity.Norm);
+            Assert.Equal(dish.Protein, entity.Protein);
+            Assert.Equal(dish.Vitamine_C, entity.Vitamine_C);
+            Assert.Equal(dish.Carbohydrate, entity.Carbohydrate);
+        }
+
+        [Theory]
+        [MemberData("GetDishes")]
+        public void DishDTO_MappingTest(Dish dish)
+        {
+            var model = Mapper.Map<Dish, DishDTO>(dish);
+
+            Assert.Equal(dish.Id, model.Id);
+            Assert.Equal(dish.Name, model.Name);
+            Assert.Equal(dish.Fat, model.Fat);
+            Assert.Equal(dish.Norm, model.Norm);
+            Assert.Equal(dish.Protein, model.Protein);
+            Assert.Equal(dish.Vitamine_C, model.Vitamine_C);
+            Assert.Equal(dish.Carbohydrate, model.Carbohydrate);
         }
 
         [Fact]

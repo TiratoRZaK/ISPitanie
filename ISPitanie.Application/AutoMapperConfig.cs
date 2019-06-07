@@ -16,6 +16,10 @@ namespace ISPitanie
         private static void AddMappings(IMapperConfigurationExpression cfg)
         {
             cfg.CreateMap<DishDTO, Dish>();
+
+            cfg.CreateMap<Dish, DishesViewModel>()
+                .ForMember(x => x.ProductsDishes, opt => opt.Ignore())
+                .ForMember(x => x.Products, opt => opt.Ignore());
             cfg.CreateMap<DishesViewModel, Dish>()
                 .ForMember(x => x.ProductsDishes, opt => opt.Ignore());
             
