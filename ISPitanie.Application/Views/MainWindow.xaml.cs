@@ -35,7 +35,8 @@ namespace ISPitanie
         private void FetchData()
         {
             ObservableCollection<DishesViewModel> dishes = new ObservableCollection<DishesViewModel>();
-            foreach(Dish item in DishService.GetDishes())
+
+            foreach (Dish item in DishService.GetDishes())
             {
                 dishes.Add(new DishesViewModel(item.Id));
             }
