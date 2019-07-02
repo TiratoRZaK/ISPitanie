@@ -132,7 +132,7 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <Button Grid.Row="9" Grid.Column="0" Content="Добавить" Click="Button_Click_OK" VerticalAlignment="Bottom" Height="20" Margin="78,0,83,10" />
+        <Button Grid.Row="9" Grid.Column="0" Content="Сохранить" Click="Button_Click_OK" VerticalAlignment="Bottom" Height="20" Margin="78,0,83,10" />
         <Button Grid.Row="9" Grid.Column="1" Content="Отмена" Click="Button_Click_Cancel" VerticalAlignment="Bottom" Height="20" Margin="69,0,73,10" />
     </Grid>
 </Window>

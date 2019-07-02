@@ -44,9 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Dish.cs" />
     <Compile Include="Entities\ProductDish.cs" />
     <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\Seller.cs" />
     <Compile Include="Entities\Type.cs" />
     <Compile Include="Entities\Unit.cs" />
     <Compile Include="Infrastructure\ValidationException.cs" />

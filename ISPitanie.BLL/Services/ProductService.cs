@@ -25,8 +25,6 @@ namespace ISPitanie.Services
             {
                 throw new ValidationException("Некорректный продукт", "");
             }
-            // Настройка AutoMapper
-            // сопоставление
             ProductDTO productDto = new ProductDTO
             {
                 Name = product.Name,

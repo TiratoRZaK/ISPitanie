@@ -50,12 +50,6 @@ namespace DAL.Repositories
         {
             db.Entry(item).State = EntityState.Modified;
         }
-        public void Clear(int id)
-        {
-            foreach (var item in db.Dishes.Where(x => x.Id == id))
-            {
-                Delete(item.Id);
-            }
-        }
+
     }
 }

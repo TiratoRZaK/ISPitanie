@@ -10,6 +10,9 @@ namespace DAL.Interfaces
         IRepository<ProductDishDTO> ProductDishes { get; }
         IRepository<UnitDTO> Units { get; }
         IRepository<TypeDTO> Types { get; }
+        IRepository<CustomerDTO> Customers { get; }
+        IRepository<SellerDTO> Sellers { get; }
+
 
         void Save();
     }

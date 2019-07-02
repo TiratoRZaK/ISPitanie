@@ -13,7 +13,11 @@ namespace DAL.Repositories
         private ProductDishesRepository productDishesRepository;
         private UnitRepository unitRepository;
         private TypeRepository typeRepository;
-
+        private SellerRepository sellerRepository;
+        private CustomerRepository customerRepository;
+        private ContractRepository contractRepository;
+        private MenuRepository menuRepository;
+        private InvoiceRepository invoiceRepository;
         public EFUnitOfWork()
         {
             db = new PitanieContext();
@@ -22,6 +26,40 @@ namespace DAL.Repositories
         public EFUnitOfWork(string connectionString)
         {
             db = new PitanieContext(connectionString);
+        }
+
+        public IRepository<ContractDTO> Contracts
+        {
+            get
+            {
+                if (contractRepository == null)
+                {
+                    contractRepository = new ContractRepository(db);
+                }
+                return contractRepository;
+            }
+        }
+        public IRepository<MenuDTO> Menus
+        {
+            get
+            {
+                if (menuRepository == null)
+                {
+                    menuRepository = new MenuRepository(db);
+                }
+                return menuRepository;
+            }
+        }
+        public IRepository<InvoiceDTO> Invoices
+        {
+            get
+            {
+                if (invoiceRepository == null)
+                {
+                    invoiceRepository = new InvoiceRepository(db);
+                }
+                return invoiceRepository;
+            }
         }
 
         public IRepository<ProductDTO> Products
@@ -33,6 +71,30 @@ namespace DAL.Repositories
                     productRepository = new ProductRepository(db);
                 }
                 return productRepository;
+            }
+        }
+
+        public IRepository<SellerDTO> Sellers
+        {
+            get
+            {
+                if (sellerRepository == null)
+                {
+                    sellerRepository = new SellerRepository(db);
+                }
+                return sellerRepository;
+            }
+        }
+
+        public IRepository<CustomerDTO> Customers
+        {
+            get
+            {
+                if (customerRepository == null)
+                {
+                    customerRepository = new CustomerRepository(db);
+                }
+                return customerRepository;
             }
         }
 

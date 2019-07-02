@@ -16,7 +16,5 @@ namespace DAL.Interfaces
         void Update(T item);
 
         void Delete(int id);
-
-        void Clear(int id);
     }
 }

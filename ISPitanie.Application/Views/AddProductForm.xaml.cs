@@ -13,13 +13,15 @@ namespace ISPitanie.Views
     public partial class AddProductForm : Window
     {
         //PitanieContext db = new PitanieContext();
+        public Window main;
         private Product Product;
         private IProductService ProductService = new ProductService(new EFUnitOfWork());
         private IUnitService UnitService = new UnitService(new EFUnitOfWork());
         private ITypeService TypeService = new TypeService(new EFUnitOfWork());
 
-        public AddProductForm()
+        public AddProductForm(MainWindow main)
         {
+            this.main = main;
             InitializeComponent();
             Product = new Product();
             this.DataContext = Product;
@@ -58,6 +60,12 @@ namespace ISPitanie.Views
         private void Button_Click_Cancel(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Window_Closed(object sender, System.EventArgs e)
+        {
+            (main as MainWindow).productDataGrid.Items.Refresh();
+            
         }
     }
 }

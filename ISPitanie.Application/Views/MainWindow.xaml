@@ -5,22 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         x:Class="ISPitanie.MainWindow"
         mc:Ignorable="d"
-        Title="ИС Питание 1.0" Height="450" Width="800">
+        Title="ИС Питание 1.0" Height="505" Width="800" MinWidth="800" MinHeight="505">
 
     <DockPanel LastChildFill="True">
-        <!--<Button DockPanel.Dock="Bottom" Background="BlanchedAlmond" Content="Нижняя панель" />-->
-        <Button DockPanel.Dock="Bottom" Content="Refresh" Click="Button_Click_1" Height="25" Width="75" />
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom"  Height="25" HorizontalAlignment="Center">
+            <Button Content="Изменить директорию" Height="20" Width="250"/>
+            <Button Content="Открыть директорию" Height="20" Width="250" Margin="170,0,0,0" />
+        </StackPanel>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="235*" />
+                <RowDefinition Height="40" />
                 <RowDefinition Height="164*" />
+
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Grid.Row="1" Content="Календарь" Margin="10" />
-            <Button Grid.Column="1" Grid.Row="1" Content="Панель информации" Margin="10" />
+            <Label VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Content="Выберите дату для вывода информации:"/>
+            <Label VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Content="Информация на 15.06.2019:"/>
+            <Calendar x:Name="calendar" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" SelectedDatesChanged="Calendar_SelectedDatesChanged"/>
+            <StackPanel Orientation="Vertical" Margin="10,0,10,0" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                <Label>Меню требования</Label>
+                <Button x:Name="menuCheck" MaxWidth="500" Content="Меню от 15.06.2019"></Button>
+                <Label>Договор</Label>
+                <Button x:Name="reportCheck" MaxWidth="500" Content="Олимпия от 12.05.2019"></Button>
+            </StackPanel>
             <TabControl MinHeight="100" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="10" Height="auto" Width="auto" IsSynchronizedWithCurrentItem="True" SelectedIndex="0">
                 <TabItem Header="Продукты">
                     <Grid>
@@ -91,16 +102,75 @@
                 <TabItem Header="Меню">
                     <Grid Background="#FFE5E5E5" />
                 </TabItem>
-                <TabItem Header="Отчёты">
+                <TabItem Header="Накопительные">
                     <Grid Background="#FFE5E5E5" />
                 </TabItem>
                 <TabItem Header="Договора">
-                    <Grid Background="#FFE5E5E5" />
+                    <Grid Background="#FFE5E5E5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="192*" />
+                            <ColumnDefinition Width="191*" />
+                            <ColumnDefinition Width="122*" />
+                            <ColumnDefinition Width="70*"/>
+                            <ColumnDefinition Width="191*" />
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="buildContract" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Height="20" Width="150" Content="Сформировать договор" Click="BuildContract_Click" Margin="116,5,117,5" />
+                        <Grid Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid.RowDefinitions >
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,5,0,0" Orientation="Horizontal">
+                                <Button Height="20" Content="Убрать все галочки" Click="unCheckAll_Click" />
+                                <Button Height="20" Content="Выделить все" Margin="10,0,10,0"  Click="CheckAll_Click" />
+                                <Button Height="20" Content="Добавить новый продукт"  Click="AddProductButton_Click" />
+                            </StackPanel>
+                            <DataGrid x:Name="lstExclude" AutoGenerateColumns="False" Grid.Row="1" Margin="5,10" HorizontalAlignment="Stretch" IsSynchronizedWithCurrentItem="False" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn Header="Выбор">
+                                        <DataGridTemplateColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <CheckBox IsChecked="{Binding Checked, Mode=TwoWay}" Click="CheckBox_Click"/>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </DataGridTemplateColumn.CellTemplate>
+                                    </DataGridTemplateColumn>
+                                    <DataGridTextColumn x:Name="nameProduct" Binding="{Binding Name}" Header="Наименование" />
+                                    <DataGridTextColumn x:Name="priceProduct" Binding="{Binding Price}" Header="Цена" />
+                                    <DataGridTextColumn x:Name="balanceProduct" Binding="{Binding Balance}" Header="Количество" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3">
+                            <StackPanel Orientation="Vertical" >
+                                <Label Margin="5,5" Height="25">Введите данные:</Label>
+                                <TextBox x:Name="numberContract" Margin="5,5" Text="Номер контракта"></TextBox>
+                                <DatePicker x:Name="dateBegin" Margin="5,5" Text="Дата начала" SelectedDateFormat="Short"/>
+                                <StackPanel Margin="5,5" Orientation="Horizontal">
+                                    <RadioButton x:Name="semiYear" IsChecked="True" Content="Полгода"/>
+                                    <RadioButton x:Name="threeMounth" Margin="50,0,0,0" Content="3 месяца"/>
+                                </StackPanel>
+                                <TextBox x:Name="nameResponssable" Margin="5,5" Text="ФИО Ответственного"></TextBox>
+                                <Label Content="Выберите продовца:"/>
+                                <ComboBox x:Name="sellerBox" Margin="5,5" />
+                                <Label Content="Выберите покупателя:"/>
+                                <ComboBox x:Name="customerBox" Margin="5,5" />
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
                 </TabItem>
                 <TabItem Header="Счёт-фактуры">
                     <Grid Background="#FFE5E5E5" />
                 </TabItem>
-                <TabItem Header="Поддержка">
+                <TabItem Header="Накладные">
                     <Grid Background="#FFE5E5E5" />
                 </TabItem>
                 <TabItem Header="Шаблоны">

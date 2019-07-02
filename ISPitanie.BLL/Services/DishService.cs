@@ -35,7 +35,7 @@ namespace ISPitanie.Services
             dishDto.Vitamine_C = dish.Vitamine_C;
             foreach(ProductDish item in dish.ProductsDishes)
             {
-                Db.ProductDishes.Clear(item.Id);
+                Db.ProductDishes.Delete(item.Id);
                 Db.ProductDishes.Create(new ProductDishDTO
                 {
                     Dish = Db.Dishes.Get(item.Dish.Id),

@@ -20,6 +20,11 @@ namespace DAL
         public virtual DbSet<UnitDTO> Units { get; set; }
         public virtual DbSet<TypeDTO> Types { get; set; }
         public virtual DbSet<InfoStatic> InfoStatics { get; set; }
+        public virtual DbSet<SellerDTO> Sellers { get; set; }
+        public virtual DbSet<CustomerDTO> Customers { get; set; }
+        public virtual DbSet<MenuDTO> Menus { get; set; }
+        public virtual DbSet<ContractDTO> Contracts { get; set; }
+        public virtual DbSet<InvoiceDTO> Invoices { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -29,6 +34,11 @@ namespace DAL
             modelBuilder.Entity<UnitDTO>().ToTable("Units");
             modelBuilder.Entity<TypeDTO>().ToTable("Types");
             modelBuilder.Entity<InfoStatic>().ToTable("InfoStatics");
+            modelBuilder.Entity<SellerDTO>().ToTable("Sellers");
+            modelBuilder.Entity<CustomerDTO>().ToTable("Customers");
+            modelBuilder.Entity<MenuDTO>().ToTable("Menus");
+            modelBuilder.Entity<InvoiceDTO>().ToTable("Invoices");
+            modelBuilder.Entity<ContractDTO>().ToTable("Contracts");
         }
     }
 }

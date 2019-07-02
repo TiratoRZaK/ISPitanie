@@ -48,10 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\ContractDTO.cs" />
+    <Compile Include="DTO\CustomerDTO.cs" />
     <Compile Include="DTO\DishDTO.cs" />
     <Compile Include="DTO\InfoStatic.cs" />
+    <Compile Include="DTO\InvoiceDTO.cs" />
+    <Compile Include="DTO\MenuDTO.cs" />
     <Compile Include="DTO\ProductDTO.cs" />
     <Compile Include="DTO\ProductDishDTO.cs" />
+    <Compile Include="DTO\SellerDTO.cs" />
     <Compile Include="DTO\TypeDTO.cs" />
     <Compile Include="DTO\UnitDTO.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
@@ -72,13 +77,34 @@
     <Compile Include="Migrations\201906061739381_FixDishesDTO.Designer.cs">
       <DependentUpon>201906061739381_FixDishesDTO.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906091342319_customer + seller.cs" />
+    <Compile Include="Migrations\201906091342319_customer + seller.Designer.cs">
+      <DependentUpon>201906091342319_customer + seller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906091512563_add field customer + seller.cs" />
+    <Compile Include="Migrations\201906091512563_add field customer + seller.Designer.cs">
+      <DependentUpon>201906091512563_add field customer + seller.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907020701491_newDoc.cs" />
+    <Compile Include="Migrations\201907020701491_newDoc.Designer.cs">
+      <DependentUpon>201907020701491_newDoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907020734098_newDocs.cs" />
+    <Compile Include="Migrations\201907020734098_newDocs.Designer.cs">
+      <DependentUpon>201907020734098_newDocs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PitanieContext.cs" />
+    <Compile Include="Repositories\ContractRepository.cs" />
+    <Compile Include="Repositories\CustomerRepository.cs" />
     <Compile Include="Repositories\DishRepository.cs" />
     <Compile Include="Repositories\EFUnitOfWork.cs" />
+    <Compile Include="Repositories\InvoiceRepository.cs" />
+    <Compile Include="Repositories\MenuRepository.cs" />
     <Compile Include="Repositories\ProductDishesRepository.cs" />
     <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Repositories\SellerRepository.cs" />
     <Compile Include="Repositories\TypeRepository.cs" />
     <Compile Include="Repositories\UnitRepository.cs" />
   </ItemGroup>
@@ -98,6 +124,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906061739381_FixDishesDTO.resx">
       <DependentUpon>201906061739381_FixDishesDTO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906091342319_customer + seller.resx">
+      <DependentUpon>201906091342319_customer + seller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906091512563_add field customer + seller.resx">
+      <DependentUpon>201906091512563_add field customer + seller.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907020701491_newDoc.resx">
+      <DependentUpon>201907020701491_newDoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907020734098_newDocs.resx">
+      <DependentUpon>201907020734098_newDocs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
